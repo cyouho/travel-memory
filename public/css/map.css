@@ -1,0 +1,13 @@
+html,
+body {
+    height: 100%;
+}
+
+#main {
+    height: 1500px;
+    position: relative;
+    padding: 0px; 
+    margin: 0px; 
+    border-width: 0px;
+    cursor: default;
+}
