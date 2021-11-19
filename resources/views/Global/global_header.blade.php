@@ -1,3 +1,5 @@
+<!-- csrf -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- 新 Bootstrap4 核心 CSS 文件 -->
 <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 

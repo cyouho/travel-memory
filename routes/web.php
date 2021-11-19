@@ -21,3 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [
     IndexController::class, 'index'
 ]);
+
+Route::post('/chinaMapDataAjax', [
+    IndexController::class, 'chinaMapDataAjax'
+]);
