@@ -1,0 +1,24 @@
+html,
+body {
+    height: 100%;
+}
+
+#china {
+    height: 1300px;
+    /*background-color: rgb(202, 231, 255);*/
+    position: relative;
+    padding: 0px; 
+    margin: 0px; 
+    border-width: 0px;
+    cursor: default;
+}
+
+.navbar-custom {
+    background-color: rgb(221, 92, 80);
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text,
+.navbar-custom .nav-link {
+    color: rgba(255,255,255,.8);
+}
