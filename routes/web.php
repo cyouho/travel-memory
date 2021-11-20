@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Index\IndexController;
+use App\Http\Controllers\Login\LoginController;
+use App\Http\Controllers\Register\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +26,20 @@ Route::get('/', [
 
 Route::post('/chinaMapDataAjax', [
     IndexController::class, 'chinaMapDataAjax'
+]);
+
+Route::get('/login', [
+    LoginController::class, 'showLoginPage'
+]);
+
+Route::post('/doLogin', [
+    LoginController::class, 'doLogin'
+]);
+
+Route::get('/register', [
+    RegisterController::class, 'showRegisterPage'
+]);
+
+Route::post('/doRegister', [
+    RegisterController::class, 'doRegister'
 ]);

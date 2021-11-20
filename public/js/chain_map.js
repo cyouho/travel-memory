@@ -21,12 +21,6 @@ $(document).ready(function () {
                 echarts.registerMap('china', geoJson);
                 myChart.setOption(
                     (option = {
-                        title: {
-                            text: '国内旅行记录',
-                            subtext: 'Data for travel',
-                            sublink:
-                                'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
-                        },
                         tooltip: {
                             trigger: 'item',
                             formatter: '{b}<br/>{c} (次)'
@@ -58,8 +52,8 @@ $(document).ready(function () {
                                 name: '全国旅行记录图',
                                 type: 'map',
                                 map: 'china',
-                                layoutCenter: ['50%', '45%'],//距左百分比，距上百分比
-                                layoutSize: "80%",//省份地图大小为600xp。
+                                layoutCenter: ['50%', '52%'],//距左百分比，距上百分比
+                                layoutSize: '100%',//省份地图大小为600xp。
                                 label: {
                                     show: true
                                 },
