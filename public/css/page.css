@@ -1,10 +1,12 @@
 html,
 body {
     height: 100%;
+    padding-top: 15px;
 }
 
+/* 全国地图 */
 #china {
-    height: 1300px;
+    height: 1500px;
     /*background-color: rgb(202, 231, 255);*/
     position: relative;
     padding: 0px; 
@@ -13,10 +15,12 @@ body {
     cursor: default;
 }
 
+/* 导航栏背景色 */
 .navbar-custom {
     background-color: rgb(221, 92, 80);
 }
 
+/* 导航栏文字 */
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text,
 .navbar-custom .nav-link {

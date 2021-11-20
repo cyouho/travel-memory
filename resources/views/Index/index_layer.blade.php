@@ -12,6 +12,7 @@
 
 <body>
     @include('Index.index_contents')
+    @include('Global.global_footer')
 </body>
 
 </html>
