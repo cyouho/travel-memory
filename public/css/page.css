@@ -26,3 +26,7 @@ body {
 .navbar-custom .nav-link {
     color: rgba(255,255,255,.8);
 }
+
+.footer-text {
+    color: rgba(211, 92, 80);
+}

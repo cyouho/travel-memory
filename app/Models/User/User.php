@@ -53,7 +53,7 @@ class User extends Model
 
         // 如果没有这天的记录就插入新的记录
         if (!$result) {
-            $this->insertUserLoginRecord($email, $loginTime);
+            $this->insertUserLoginRecord($userId[0]->user_id, $loginTime);
         } else {
             // 如果有记录就获取记录
             $result = ControllersUtils::getArrFromObj($result);
@@ -89,8 +89,14 @@ class User extends Model
         ];
         DB::insert('insert into users (user_name, user_email, user_password, user_session, create_at, update_at, last_login_at, total_login_times) values (?, ?, ?, ?, ?, ?, ?, ?)', [$data['user_name'], $data['user_email'], $data['user_password'], $data['user_session'], $data['create_at'], $data['update_at'], $data['last_login_at'], $data['total_login_times']]);
 
+        $result = $this->getUserId(['user_email' => $email]);
+        $userId = isset($result[0]->user_id) ? $result[0]->user_id : '';
+
         // 建立第一次 user 的登录信息
-        $this->insertUserLoginRecord($email, $timestamp);
+        $this->insertUserLoginRecord($userId, $timestamp);
+
+        // 建立第一次 China map 记录
+        $this->insertChinaMapRecord($userId);
 
         return $session;
     }
@@ -103,19 +109,19 @@ class User extends Model
         return Hash::check($password, (string)$hashPwd);
     }
 
-    public function insertUserLoginRecord($email, $timestamp)
+    public function insertUserLoginRecord($userId, $timestamp)
     {
-        $data = [
-            'user_email' => $email,
-        ];
-        $result = $this->getUserId($data);
-        $userId = isset($result[0]->user_id) ? $result[0]->user_id : '';
-
         $insertData = [
             'user_id'     => $userId,
             'login_day'   => $timestamp,
             'login_times' => 1,
         ];
         $affected = DB::insert('insert into user_login_record (user_id, login_day, login_times) values (?, ?, ?)', [$insertData['user_id'], $insertData['login_day'], $insertData['login_times']]);
+    }
+
+    public function insertChinaMapRecord($userId)
+    {
+        $data = ModelsUtils::initChinaMapRecord($userId);
+        $affected = DB::table("china_map_record")->insert($data);
     }
 }
