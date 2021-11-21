@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Login;
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class LoginController extends Controller
 {
@@ -50,5 +51,11 @@ class LoginController extends Controller
 
         $cookie = $user->getSeesion($email);
         return response()->redirectTo('/')->cookie('_cyouho', $cookie, 60);
+    }
+
+    public function doLogout()
+    {
+        $cookie = Cookie::forget('_cyouho');
+        return response()->redirectTo('/')->cookie($cookie);
     }
 }

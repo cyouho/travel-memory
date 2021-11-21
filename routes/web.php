@@ -40,6 +40,10 @@ Route::get('/register', [
     RegisterController::class, 'showRegisterPage'
 ]);
 
+Route::get('/logout', [
+    LoginController::class, 'doLogout'
+]);
+
 Route::post('/doRegister', [
     RegisterController::class, 'doRegister'
 ]);

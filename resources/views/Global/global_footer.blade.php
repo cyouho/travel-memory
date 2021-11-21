@@ -1,6 +1,6 @@
 <footer class="pt-4 my-md-5 pt-md-5 border-top text-muted">
     <div class="container">
-        <p class="btn-group">This site was created by CYOUHO with &copy; Bootstrap 4!</p>
+        <p class="btn-group footer-text">This site was created by CYOUHO with &copy; Bootstrap 4!</p>
 
         <!-- Split dropup button -->
         <div class="btn-group dropup float-right">

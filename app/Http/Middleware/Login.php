@@ -27,9 +27,11 @@ class Login
         if ($cookie) {
             $user = new User();
             $userName = $user->getUserName($cookie);
+            $userId = $user->getUserId(['user_session' => $cookie]);
             $data = [
                 'isLogin'  => true,
                 'userName' => $userName,
+                'userId'   => $userId[0]->user_id,
             ];
             view()->share('data', $data);
         } else {

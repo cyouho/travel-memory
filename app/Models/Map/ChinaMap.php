@@ -23,9 +23,10 @@ class ChinaMap extends Model
      * 
      * @return array
      */
-    public function getChinaMapDataAll()
+    public function getChinaMapDataAll($data)
     {
-        $result = DB::select('select province as name, travel_times as value from china_map_record');
+        $key = key($data);
+        $result = DB::select('select province as name, travel_times as value from china_map_record where ' . $key . ' = ?', [$data[$key]]);
         $result = array_map('get_object_vars', $result);
 
         return $result;

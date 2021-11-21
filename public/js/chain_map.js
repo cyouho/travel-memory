@@ -3,6 +3,7 @@ $(document).ready(function () {
     var chartDom = document.getElementById('china');
     var myChart = echarts.init(chartDom);
     var option;
+    var userId = $("#navbardroplogin").attr("user-id");
 
     $.ajax({
         url: "/chinaMapDataAjax",
@@ -11,7 +12,7 @@ $(document).ready(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         data: {
-            "userId": 0,
+            "userId": userId,
         },
         success: function (data) {
             console.log(data);

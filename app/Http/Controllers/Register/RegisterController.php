@@ -31,6 +31,7 @@ class RegisterController extends Controller
         // 如果没有user ID就生成新的ID
         if (!$userId) {
             $cookie = $user->RegisterSet($email, $password);
+            
         } else {
             return view('register.register', ['errMSG' => $this->_message['error_message']['register']['existed_user']]);
         }
