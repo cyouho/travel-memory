@@ -19,7 +19,6 @@ class ChinaMap extends Model
 
     /**
      * 获取全国地图数据
-     * @todo 使用 userId 区分不同用户的数据
      * 
      * @return array
      */

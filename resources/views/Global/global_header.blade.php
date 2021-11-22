@@ -1,3 +1,6 @@
+<title>旅行回忆</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- csrf -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- 新 Bootstrap4 核心 CSS 文件 -->

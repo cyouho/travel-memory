@@ -1,15 +1,16 @@
-<html lang="zh-CN">
+<html>
 
 <head>
+    <title>个人主页</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     @include('Global.global_header')
     <link rel="stylesheet" href="/css/page.css">
-    <script src="/js/chain_map.js"></script>
-    <script src="/js/index.js"></script>
     @include('Global.global_navbar')
 </head>
 
 <body>
-    @include('Index.index_contents')
+    @include('Home.home_contents')
     @include('Global.global_footer')
 </body>
 
