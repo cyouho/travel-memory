@@ -1,25 +1,25 @@
 //import * as echarts from 'echarts';
 $(document).ready(function () {
-    var chartDom = document.getElementById('china');
+    var chartDom = document.getElementById('china_province');
     var myChart = echarts.init(chartDom);
     var option;
-    var userId = $("#navbardroplogin").attr("user-id");
+    var province = $("#province_gone").text();
 
     $.ajax({
-        url: "/chinaMapDataAjax",
+        url: "/chinaProvinceMapDataAjax",
         type: "POST",
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         data: {
-            "userId": userId,
+            "province": province,
         },
         success: function (data) {
             console.log(data);
             myChart.showLoading();
-            $.get('/js/map/china.json', function (geoJson) {
+            $.get('/js/map/' + province + '.json', function (geoJson) {
                 myChart.hideLoading();
-                echarts.registerMap('china', geoJson);
+                echarts.registerMap(province, geoJson);
                 myChart.setOption(
                     (option = {
                         tooltip: {
@@ -50,9 +50,9 @@ $(document).ready(function () {
                         },
                         series: [
                             {
-                                name: '全国旅行记录图',
+                                name: province + '旅行记录图',
                                 type: 'map',
-                                map: 'china',
+                                map: province,
                                 layoutCenter: ['50%', '52%'],//距左百分比，距上百分比
                                 layoutSize: '100%',//省份地图大小为600xp。
                                 label: {
@@ -72,44 +72,14 @@ $(document).ready(function () {
                                 },
                                 selectedMode: false,
                                 data: data,
-
-                                // 自定义名称映射
-                                // nameMap: {
-                                //     'Central and Western': '中西区',
-                                //     Eastern: '东区',
-                                //     Islands: '离岛',
-                                //     'Kowloon City': '九龙城',
-                                //     'Kwai Tsing': '葵青',
-                                //     'Kwun Tong': '观塘',
-                                //     North: '北区',
-                                //     'Sai Kung': '西贡',
-                                //     'Sha Tin': '沙田',
-                                //     'Sham Shui Po': '深水埗',
-                                //     Southern: '南区',
-                                //     'Tai Po': '大埔',
-                                //     'Tsuen Wan': '荃湾',
-                                //     'Tuen Mun': '屯门',
-                                //     'Wan Chai': '湾仔',
-                                //     'Wong Tai Sin': '黄大仙',
-                                //     'Yau Tsim Mong': '油尖旺',
-                                //     'Yuen Long': '元朗'
-                                // }
                             }
                         ]
                     })
                 );
             });
-
-            //鼠标移入地图不变黄色
-            // myChart.on("mouseover", function () {
-            //     myChart.dispatchAction({
-            //         type: "downplay"
-            //     });
-            // });
             myChart.on('click', function (param) {
                 //这个params可以获取你要的图中的当前点击的项的参数
                 console.log(param['data']['name']);
-                window.open("/province/" + param['data']['name']);
             });
 
             option && myChart.setOption(option);

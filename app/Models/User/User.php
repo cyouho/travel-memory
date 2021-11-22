@@ -36,6 +36,14 @@ class User extends Model
         return $userName[0]['user_name'];
     }
 
+    public function getProvinceGoneRecord($data)
+    {
+        $key = key($data);
+        $result = DB::select('select count(*) as gone from travel_memory.china_map_record where ' . $key . ' = ? and travel_times > 0', [$data[$key]]);
+
+        return $result[0]->gone;
+    }
+
     public function updateLastLoginTime($loginTime, $email)
     {
         $affected = DB::update('update users set last_login_at = ? where user_email = ?', [$loginTime, $email]);

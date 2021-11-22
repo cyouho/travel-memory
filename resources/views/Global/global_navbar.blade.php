@@ -16,11 +16,14 @@
                 <a class="dropdown-item" href="#">Link 3</a>
             </div>
         </li>
+    </ul>
+    <ul class="navbar-nav navbar-text m-auto">
         <li class="nav-item">
-            <a class="nav-link" href="#">Link 2</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link 3</a>
+            <a class="nav-text font-weight-bold" id="province_gone">
+                @if (isset($province))
+                {{$province}}
+                @endif
+            </a>
         </li>
     </ul>
     @endif
@@ -40,7 +43,7 @@
                 {{$data['userName']}}
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="/myPage">个人主页</a>
+                <a class="dropdown-item" href="/home">个人主页</a>
                 <a class="dropdown-item" href="/profile">设置</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/logout">退出</a>

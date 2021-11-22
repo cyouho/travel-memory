@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Index\IndexController;
 use App\Http\Controllers\Login\LoginController;
+use App\Http\Controllers\Province\ProvinceController;
 use App\Http\Controllers\Register\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +30,10 @@ Route::post('/chinaMapDataAjax', [
     IndexController::class, 'chinaMapDataAjax'
 ]);
 
+Route::post('/showHowManyProvinceGoneAjax', [
+    IndexController::class, 'showHowManyProvinceGoneAjax'
+]);
+
 Route::get('/login', [
     LoginController::class, 'showLoginPage'
 ]);
@@ -46,4 +52,12 @@ Route::get('/logout', [
 
 Route::post('/doRegister', [
     RegisterController::class, 'doRegister'
+]);
+
+Route::get('/home', [
+    HomeController::class, 'index'
+]);
+
+Route::get('/province/{province?}', [
+    ProvinceController::class, 'index'
 ]);
