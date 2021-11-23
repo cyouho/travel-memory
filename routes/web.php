@@ -61,3 +61,7 @@ Route::get('/home', [
 Route::get('/province/{province?}', [
     ProvinceController::class, 'index'
 ]);
+
+Route::post('/chinaProvinceMapDataAjax', [
+    ProvinceController::class, 'chinaProvinceMapDataAjax'
+]);
