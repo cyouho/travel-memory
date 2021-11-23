@@ -19,11 +19,17 @@
     </ul>
     <ul class="navbar-nav navbar-text m-auto">
         <li class="nav-item">
-            <a class="nav-text font-weight-bold" id="province_gone">
-                @if (isset($province))
-                {{$province}}
-                @endif
+            <!-- Index navbar -->
+            @if (isset($province))
+            <a class="nav-text font-weight-bold" id="province_gone" province-name="{{$province['province_name']}}" province-adcode="{{$province['province_adcode']}}">
+                {{$province['province_name']}}
             </a>
+            @else
+            <!-- Province navbar -->
+            <a class="nav-text font-weight-bold" id="province_gone">
+
+            </a>
+            @endif
         </li>
     </ul>
     @endif

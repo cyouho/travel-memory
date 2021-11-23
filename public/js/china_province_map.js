@@ -3,7 +3,9 @@ $(document).ready(function () {
     var chartDom = document.getElementById('china_province');
     var myChart = echarts.init(chartDom);
     var option;
-    var province = $("#province_gone").text();
+    var provinceAdcode = $("#province_gone").attr("province-adcode");
+    var provinceName = $("#province_gone").attr("province-name");
+    var userId = $("#navbardroplogin").attr("user-id");
 
     $.ajax({
         url: "/chinaProvinceMapDataAjax",
@@ -12,14 +14,15 @@ $(document).ready(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         data: {
-            "province": province,
+            "province": provinceName,
+            "userId": userId,
         },
         success: function (data) {
             console.log(data);
             myChart.showLoading();
-            $.get('/js/map/' + province + '.json', function (geoJson) {
+            $.get('/js/map/' + provinceAdcode + '.json', function (geoJson) {
                 myChart.hideLoading();
-                echarts.registerMap(province, geoJson);
+                echarts.registerMap(provinceName, geoJson);
                 myChart.setOption(
                     (option = {
                         tooltip: {
@@ -50,11 +53,11 @@ $(document).ready(function () {
                         },
                         series: [
                             {
-                                name: province + '旅行记录图',
+                                name: provinceName + '旅行记录图',
                                 type: 'map',
-                                map: province,
-                                layoutCenter: ['50%', '52%'],//距左百分比，距上百分比
-                                layoutSize: '100%',//省份地图大小为600xp。
+                                map: provinceName,
+                                layoutCenter: ['50%', '50%'],//距左百分比，距上百分比
+                                layoutSize: '80%',//省份地图大小为600xp。
                                 label: {
                                     show: true
                                 },
