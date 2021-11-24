@@ -14,7 +14,8 @@ body {
     cursor: default;
 }
 
-#china_province {
+#china_province,
+#china_province_city {
     height: 800px;
     /*background-color: rgb(202, 231, 255);*/
     position: relative;
