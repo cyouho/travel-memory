@@ -20,7 +20,7 @@ $(document).ready(function () {
         success: function (data) {
             console.log(data);
             myChart.showLoading();
-            $.get('/js/map/' + provinceAdcode + '.json', function (geoJson) {
+            $.get('/js/map/province/' + provinceAdcode + '.json', function (geoJson) {
                 myChart.hideLoading();
                 echarts.registerMap(provinceName, geoJson);
                 myChart.setOption(
@@ -83,6 +83,7 @@ $(document).ready(function () {
             myChart.on('click', function (param) {
                 //这个params可以获取你要的图中的当前点击的项的参数
                 console.log(param['data']['name']);
+                window.open("/province/" + provinceName + "/city/" + param['data']['name']);
             });
 
             option && myChart.setOption(option);

@@ -15,10 +15,9 @@ class ProvinceMap extends Model
      * 
      * @return array
      */
-    public function getChinaProvinceMapDataAll($data)
+    public function getChinaProvinceMapDataAll($userId, $provinceName)
     {
-        $key = key($data);
-        $result = DB::select('select province as name, travel_times as value from china_map_record where ' . $key . ' = ?', [$data[$key]]);
+        $result = DB::select('select city as name, count(*) as value from china_province_map_record where user_id = ? and province = ? group by name', [$userId, $provinceName]);
         $result = array_map('get_object_vars', $result);
 
         return $result;

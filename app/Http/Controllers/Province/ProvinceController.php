@@ -20,7 +20,7 @@ class ProvinceController extends Controller
     {
         if ($province == 'others') return view('Province.province_layer');
 
-        $provinceAdcode = $this->_map['province'][$province];
+        $provinceAdcode = $this->_map['nation']['中国'][$province];
 
         return view('Province.province_layer', [
             'province' => [
@@ -37,21 +37,21 @@ class ProvinceController extends Controller
         $userId = $formData['userId'];
 
         $province = new ProvinceMap();
-        $chinaProvinceMapData = $province->getChinaProvinceMapDataAll($provinceName, $userId);
+        $chinaProvinceMapData = $province->getChinaProvinceMapDataAll($userId, $provinceName);
 
-        $test = $this->_map['city']['云南省'];
-        $data = [];
-        $data = array_pad($data, 16, ['name' => 'a', 'value' => 0]);
-        //dd($test);
-        $i = 0;
-        foreach ($test as $key => $value) {
-            $data[$i] = [
-                'name' => $key,
-                'value' => 0,
-            ];
-            $i++;
-        }
-        return response()->json($data)->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+        // $test = $this->_map['city']['云南省'];
+        // $data = [];
+        // $data = array_pad($data, 16, ['name' => 'a', 'value' => 0]);
+        // //dd($test);
+        // $i = 0;
+        // foreach ($test as $key => $value) {
+        //     $data[$i] = [
+        //         'name' => $key,
+        //         'value' => 0,
+        //     ];
+        //     $i++;
+        // }
+        return response()->json($chinaProvinceMapData)->setEncodingOptions(JSON_UNESCAPED_UNICODE);
     }
 
     /**

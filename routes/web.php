@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\City\CityController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Index\IndexController;
 use App\Http\Controllers\Login\LoginController;
@@ -64,4 +65,12 @@ Route::get('/province/{province?}', [
 
 Route::post('/chinaProvinceMapDataAjax', [
     ProvinceController::class, 'chinaProvinceMapDataAjax'
+]);
+
+Route::get('/province/{province?}/city/{city?}', [
+    CityController::class, 'index'
+]);
+
+Route::post('chinaProvinceCityMapDataAjax', [
+    CityController::class, 'chinaProvinceCityMapDataAjax'
 ]);

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-custom fixed-top">
     <!-- Brand/logo -->
-    <a class="navbar-brand" href="/">Travel Memory</a>
+    <a class="navbar-brand" href="/">旅行回忆</a>
 
     @if (isset($data) && $data['isLogin'])
     <!-- Left Links -->
@@ -8,7 +8,7 @@
         <!-- Dropdown -->
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                Dropdown link
+                操作
             </a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">Link 1</a>
