@@ -25,7 +25,8 @@ class ChinaMap extends Model
     public function getChinaMapDataAll($data)
     {
         $key = key($data);
-        $result = DB::select('select province as name, count(*) as value from china_province_map_record where user_id = ' . $key . ' group by name', [$data[$key]]);
+        //$result = DB::select('select province as name, count(*) as value from china_province_map_record where ' . $key . ' = ? group by name', [$data[$key]]);
+        $result = DB::select('select province as name, travel_times as value from china_map_record where ' . $key . ' = ?', [$data[$key]]);
         $result = array_map('get_object_vars', $result);
 
         return $result;
