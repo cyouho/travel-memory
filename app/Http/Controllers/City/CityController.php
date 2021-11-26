@@ -4,7 +4,7 @@ namespace App\Http\Controllers\City;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Map\ProvinceMap;
+use App\Models\Map\RegionMap;
 
 class CityController extends Controller
 {
@@ -30,14 +30,14 @@ class CityController extends Controller
         ]);
     }
 
-    public function chinaProvinceCityMapDataAjax(Request $request)
+    public function chinaProvinceCityRegionMapDataAjax(Request $request)
     {
         $formData = $request->post();
-        $provinceName = $formData['province'];
+        $cityName = $formData['province'];
         $userId = $formData['userId'];
 
-        $province = new ProvinceMap();
-        $chinaProvinceMapData = $province->getChinaProvinceMapDataAll($userId, $provinceName);
+        $province = new RegionMap();
+        $chinaProvinceMapData = $province->getChinaProvinceCityRegionMapDataAll($userId, $cityName);
 
         return response()->json($chinaProvinceMapData)->setEncodingOptions(JSON_UNESCAPED_UNICODE);
     }

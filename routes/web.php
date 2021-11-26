@@ -4,6 +4,7 @@ use App\Http\Controllers\City\CityController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Index\IndexController;
 use App\Http\Controllers\Login\LoginController;
+use App\Http\Controllers\Operate\AddRecordController;
 use App\Http\Controllers\Province\ProvinceController;
 use App\Http\Controllers\Register\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -71,6 +72,15 @@ Route::get('/province/{province?}/city/{city?}', [
     CityController::class, 'index'
 ]);
 
-Route::post('chinaProvinceCityMapDataAjax', [
-    CityController::class, 'chinaProvinceCityMapDataAjax'
+Route::post('chinaProvinceCityRegionMapDataAjax', [
+    CityController::class, 'chinaProvinceCityRegionMapDataAjax'
 ]);
+
+Route::get('/addRecord', [
+    AddRecordController::class, 'index'
+]);
+
+// 获取全国各县市区的方法，功勋方法，必要时使用，暂时注释掉。
+// Route::get('/test', [
+//     HomeController::class, 'test'
+// ]);
