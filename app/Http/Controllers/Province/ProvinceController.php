@@ -21,7 +21,7 @@ class ProvinceController extends Controller
         if ($province == 'others') return view('Province.province_layer');
 
         $provinceAdcode = $this->_map['nation']['中国'][$province];
-        dd($this->getProvinceCity($provinceAdcode));
+
         return view('Province.province_layer', [
             'province' => [
                 'province_name' => $province,
@@ -59,7 +59,7 @@ class ProvinceController extends Controller
      */
     public function getProvinceCity($provinceAdcode)
     {
-        $test = file_get_contents(public_path() . "../js/map/province/" . $provinceAdcode . ".json");
+        $test = file_get_contents(public_path() . "/js/map/province/" . $provinceAdcode . ".json");
         $a = json_decode($test, true);
 
         $count = count($a['features']);

@@ -8,7 +8,7 @@ $(document).ready(function () {
     var userId = $("#navbardroplogin").attr("user-id");
 
     $.ajax({
-        url: "/chinaProvinceCityMapDataAjax",
+        url: "/chinaProvinceCityRegionMapDataAjax",
         type: "POST",
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -82,7 +82,7 @@ $(document).ready(function () {
             });
             myChart.on('click', function (param) {
                 //这个params可以获取你要的图中的当前点击的项的参数
-                console.log(param['data']['name']);
+                //console.log(param['data']['name']);
                 //window.open("/province/" + provinceName + "/city/" + param['data']['name']);
             });
 
