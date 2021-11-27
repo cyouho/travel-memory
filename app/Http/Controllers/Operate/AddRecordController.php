@@ -12,4 +12,8 @@ class AddRecordController extends Controller
     {
         return view('Operate.AddRecord.add_record_layer');
     }
+
+    public function firstChinaProvinceCityRegionMapDataAjax()
+    {
+    }
 }
