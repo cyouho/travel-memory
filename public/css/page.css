@@ -25,6 +25,10 @@ body {
     cursor: default;
 }
 
+#add_record {
+    margin-top: 80px;
+}
+
 /* 导航栏背景色 */
 .navbar-custom {
     background-color: rgb(221, 92, 80);
