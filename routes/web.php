@@ -80,6 +80,14 @@ Route::get('/addRecord', [
     AddRecordController::class, 'index'
 ]);
 
+Route::post('/firstChinaProvinceCityRegionMapDataAjax', [
+    AddRecordController::class, 'firstChinaProvinceCityRegionMapDataAjax'
+]);
+
+Route::post('/secondChinaProvinceCityRegionMapDataAjax', [
+    AddRecordController::class, 'secondChinaProvinceCityRegionMapDataAjax'
+]);
+
 // 获取全国各县市区的方法，功勋方法，必要时使用，暂时注释掉。
 // Route::get('/test', [
 //     HomeController::class, 'test'

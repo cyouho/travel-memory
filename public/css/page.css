@@ -14,6 +14,37 @@ body {
     cursor: default;
 }
 
+@font-face {
+    font-family: "Glyphicons Halflings";
+    src: url("/css/fonts/glyphicons-halflings-regular.eot");
+    src: url("/css/fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
+  }
+  .glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: "Glyphicons Halflings";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .glyphicon-calendar:before {
+    content: "\e109";
+  }
+  .input-group-addon {
+    padding: 6px 12px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555555;
+    text-align: center;
+    background-color: #eeeeee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
 #china_province,
 #china_province_city {
     height: 800px;
@@ -25,8 +56,12 @@ body {
     cursor: default;
 }
 
+#top {
+    height: 80px;
+}
+
 #add_record {
-    margin-top: 80px;
+    height: 600px;
 }
 
 /* 导航栏背景色 */

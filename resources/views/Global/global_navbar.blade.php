@@ -18,7 +18,7 @@
     <ul class="navbar-nav navbar-text m-auto">
         <li class="nav-item">
             <!-- Index navbar -->
-            @if (isset($province))
+            @if (isset($province['province_name']))
             <a class="nav-text font-weight-bold" id="province_gone" province-name="{{$province['province_name']}}" province-adcode="{{$province['province_adcode']}}">
                 {{$province['province_name']}}
             </a>

@@ -10,7 +10,7 @@ class RegionMap extends Model
 {
     use HasFactory;
     /**
-     * 获取省级地图数据
+     * 获取市级地图数据
      * 
      * @return array
      */
