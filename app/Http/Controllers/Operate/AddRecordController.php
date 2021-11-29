@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Operate;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Operate\Record;
 
 class AddRecordController extends Controller
 {
@@ -23,6 +24,29 @@ class AddRecordController extends Controller
         ];
 
         return view('Operate.AddRecord.add_record_layer', $data);
+    }
+
+    public function addNewRecord(Request $request)
+    {
+        $formdata = $request->post();
+        $province = $formdata['province'];
+        $city = $formdata['city'];
+        $region = $formdata['region'];
+        $travelDate = $formdata['travelDate'];
+        $userId = $formdata['userId'];
+        $insertTravelData = [
+            'user_id'         => $userId,
+            'province_adcode' => $this->_map['nation']['中国'][$province],
+            'province'        => $province,
+            'city_adcode'     => $this->_map['city'][$province][$city],
+            'city'            => $city,
+            'region_adcode'   => $region !== '-' ? $this->_map['region'][$province][$city][$region] : 0,
+            'region'          => $region,
+            'travel_date'     => strtotime($travelDate),
+        ];
+        $record = new Record();
+        $record->insertTravelRecord($insertTravelData);
+        return response()->redirectTo('/addRecord');
     }
 
     public function firstChinaProvinceCityRegionMapDataAjax(Request $request)
