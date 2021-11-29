@@ -25,9 +25,9 @@ class IndexController extends Controller
         $formData = $request->post();
         $userId = isset($formData['userId']) ? $formData['userId'] : '';
 
-        $user = new User();
-        $result = $user->getProvinceGoneRecord(['user_id' => $userId]);
-
+        $chinaMap = new ChinaMap();
+        $chinaMapData = $chinaMap->getChinaMapDataAll(['user_id' => $userId]);
+        $result = count($chinaMapData);
         $provinceRecord = [
             'gone' => $result,
             'go'   => 35 - $result,

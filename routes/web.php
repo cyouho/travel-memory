@@ -80,6 +80,10 @@ Route::get('/addRecord', [
     AddRecordController::class, 'index'
 ]);
 
+Route::post('/addNewRecord', [
+    AddRecordController::class, 'addNewRecord'
+]);
+
 Route::post('/firstChinaProvinceCityRegionMapDataAjax', [
     AddRecordController::class, 'firstChinaProvinceCityRegionMapDataAjax'
 ]);
