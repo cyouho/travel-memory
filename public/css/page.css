@@ -60,6 +60,26 @@ body {
     height: 80px;
 }
 
+.home-top {
+    height: 75px;
+}
+
+.sidebar-height {
+    height: 500px;
+}
+
+.home-contents-page {
+    height: 800px;
+}
+
+.home-sidebar {
+    width: 280px;
+}
+
+.home-contents {
+    width: 1050px;
+}
+
 #add_record {
     height: 600px;
 }
@@ -74,6 +94,15 @@ body {
 .navbar-custom .navbar-text,
 .navbar-custom .nav-link {
     color: rgba(255,255,255,.8);
+}
+
+/* 侧边栏导航文字 */
+.nav .nav-link {
+    color: rgba(211, 92, 80);
+}
+.nav-pills .nav-link.active {
+    color: rgba(255,255,255,.8);
+    background-color: rgba(211, 92, 80);
 }
 
 .footer-text {
