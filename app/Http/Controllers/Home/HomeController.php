@@ -13,6 +13,20 @@ class HomeController extends Controller
         return view('Home.home_layer');
     }
 
+    public function homeContentsAjax(Request $request)
+    {
+        $formData = $request->post();
+        $pageName = $formData['pageName'];
+
+        switch ($pageName) {
+            case 'profile':
+                return view('Home.DetailContents.home_detail_contents_profile');
+                break;
+            default:
+                break;
+        }
+    }
+
     /**
      * 获取全国各县市区的方法，功勋方法，不要删！
      */
