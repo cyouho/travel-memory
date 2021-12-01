@@ -47,6 +47,6 @@
             </ul>
             <hr>
         </div>
-        <div class="bg-light col-sm-9 p-3 container-fluid home-contents-page">dd</div>
+        <div class="col-sm-9 p-3 container-fluid home-contents-page" id="home-contents"></div>
     </div>
 </div>

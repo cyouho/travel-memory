@@ -60,6 +60,10 @@ Route::get('/home', [
     HomeController::class, 'index'
 ]);
 
+Route::post('/homeContentsAjax', [
+    HomeController::class, 'homeContentsAjax'
+]);
+
 Route::get('/province/{province?}', [
     ProvinceController::class, 'index'
 ]);
