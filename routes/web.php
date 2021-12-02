@@ -7,6 +7,7 @@ use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Operate\AddRecordController;
 use App\Http\Controllers\Province\ProvinceController;
 use App\Http\Controllers\Register\RegisterController;
+use App\Http\Controllers\Setting\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,6 +59,10 @@ Route::post('/doRegister', [
 
 Route::get('/home', [
     HomeController::class, 'index'
+]);
+
+Route::get('/setting', [
+    SettingController::class, 'index'
 ]);
 
 Route::post('/homeContentsAjax', [
