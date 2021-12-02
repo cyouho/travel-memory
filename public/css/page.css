@@ -14,6 +14,20 @@ body {
     cursor: default;
 }
 
+.carousel-inner img {
+    width: 100%;
+    height: 500px;
+}
+
+.whats-new {
+    width: 100%;
+    color: rgba(211, 92, 80);
+}
+
+.index-gap {
+    height: 80px;
+}
+
 @font-face {
     font-family: "Glyphicons Halflings";
     src: url("/css/fonts/glyphicons-halflings-regular.eot");
@@ -44,6 +58,23 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+
+  .label {
+    display: inline;
+    padding: 0.2em 0.6em 0.3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25em;
+}
+
+.label-default {
+    background-color: rgb(221, 92, 80);;
+}
 
 #china_province,
 #china_province_city {

@@ -23,6 +23,7 @@ class HomeController extends Controller
                 return view('Home.DetailContents.home_detail_contents_profile');
                 break;
             default:
+                return view('Home.DetailContents.home_detail_contents_null');
                 break;
         }
     }

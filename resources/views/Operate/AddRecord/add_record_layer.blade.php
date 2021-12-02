@@ -1,6 +1,7 @@
 <html ng-app="app" lang="zh-CN">
 
 <head>
+    <title>添加记录</title>
     @include('Global.global_header')
     <link rel="stylesheet" href="/css/page.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.css">

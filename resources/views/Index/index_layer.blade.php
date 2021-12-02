@@ -9,7 +9,11 @@
 </head>
 
 <body>
+    @if (isset($data) && !$data['isLogin'])
+    @include('Index.index_login_contents')
+    @else
     @include('Index.index_contents')
+    @endif
     @include('Global.global_footer')
 </body>
 
