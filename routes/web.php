@@ -29,14 +29,6 @@ Route::get('/', [
     IndexController::class, 'index'
 ]);
 
-Route::post('/chinaMapDataAjax', [
-    IndexController::class, 'chinaMapDataAjax'
-]);
-
-Route::post('/showHowManyProvinceGoneAjax', [
-    IndexController::class, 'showHowManyProvinceGoneAjax'
-]);
-
 Route::get('/login', [
     LoginController::class, 'showLoginPage'
 ]);
@@ -57,49 +49,61 @@ Route::post('/doRegister', [
     RegisterController::class, 'doRegister'
 ]);
 
-Route::get('/home', [
-    HomeController::class, 'index'
-]);
+// need login when use these route below.
+Route::middleware(['user'])->group(function () {
 
-Route::get('/setting', [
-    SettingController::class, 'index'
-]);
+    Route::post('/chinaMapDataAjax', [
+        IndexController::class, 'chinaMapDataAjax'
+    ]);
 
-Route::post('/homeContentsAjax', [
-    HomeController::class, 'homeContentsAjax'
-]);
+    Route::post('/showHowManyProvinceGoneAjax', [
+        IndexController::class, 'showHowManyProvinceGoneAjax'
+    ]);
 
-Route::get('/province/{province?}', [
-    ProvinceController::class, 'index'
-]);
+    Route::get('/home', [
+        HomeController::class, 'index'
+    ]);
 
-Route::post('/chinaProvinceMapDataAjax', [
-    ProvinceController::class, 'chinaProvinceMapDataAjax'
-]);
+    Route::get('/setting/{kind?}', [
+        SettingController::class, 'index'
+    ]);
 
-Route::get('/province/{province?}/city/{city?}', [
-    CityController::class, 'index'
-]);
+    Route::post('/homeContentsAjax', [
+        HomeController::class, 'homeContentsAjax'
+    ]);
 
-Route::post('chinaProvinceCityRegionMapDataAjax', [
-    CityController::class, 'chinaProvinceCityRegionMapDataAjax'
-]);
+    Route::get('/province/{province?}', [
+        ProvinceController::class, 'index'
+    ]);
 
-Route::get('/addRecord', [
-    AddRecordController::class, 'index'
-]);
+    Route::post('/chinaProvinceMapDataAjax', [
+        ProvinceController::class, 'chinaProvinceMapDataAjax'
+    ]);
 
-Route::post('/addNewRecord', [
-    AddRecordController::class, 'addNewRecord'
-]);
+    Route::get('/province/{province?}/city/{city?}', [
+        CityController::class, 'index'
+    ]);
 
-Route::post('/firstChinaProvinceCityRegionMapDataAjax', [
-    AddRecordController::class, 'firstChinaProvinceCityRegionMapDataAjax'
-]);
+    Route::post('chinaProvinceCityRegionMapDataAjax', [
+        CityController::class, 'chinaProvinceCityRegionMapDataAjax'
+    ]);
 
-Route::post('/secondChinaProvinceCityRegionMapDataAjax', [
-    AddRecordController::class, 'secondChinaProvinceCityRegionMapDataAjax'
-]);
+    Route::get('/addRecord', [
+        AddRecordController::class, 'index'
+    ]);
+
+    Route::post('/addNewRecord', [
+        AddRecordController::class, 'addNewRecord'
+    ]);
+
+    Route::post('/firstChinaProvinceCityRegionMapDataAjax', [
+        AddRecordController::class, 'firstChinaProvinceCityRegionMapDataAjax'
+    ]);
+
+    Route::post('/secondChinaProvinceCityRegionMapDataAjax', [
+        AddRecordController::class, 'secondChinaProvinceCityRegionMapDataAjax'
+    ]);
+});
 
 // 获取全国各县市区的方法，功勋方法，必要时使用，暂时注释掉。
 // Route::get('/test', [
