@@ -38,7 +38,7 @@ class AddRecordController extends Controller
             'user_id'         => $userId,
             'province_adcode' => $this->_map['nation']['中国'][$province],
             'province'        => $province,
-            'city_adcode'     => $this->_map['city'][$province][$city],
+            'city_adcode'     => $city !== '-' ? $this->_map['city'][$province][$city] : 0,
             'city'            => $city,
             'region_adcode'   => $region !== '-' ? $this->_map['region'][$province][$city][$region] : 0,
             'region'          => $region,

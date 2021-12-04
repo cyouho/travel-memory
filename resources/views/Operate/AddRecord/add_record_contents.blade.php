@@ -36,6 +36,12 @@
                     </div>
                 </div>
             </div><br>
+            <div class="row">
+                <div class="col">
+                    <label for="sel1">景点名:</label>
+                    <input class="form-control" id="dest" name="travel_dest" placeholder="请输入景点名称">
+                </div>
+            </div><br>
             <div class="border-top"></div><br>
             <div class="row">
                 <button type="submit" class="btn btn-primary m-auto" id="record-submit">提交</button>
