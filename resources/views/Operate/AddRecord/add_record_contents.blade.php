@@ -41,6 +41,10 @@
                     <label for="sel1">景点名:</label>
                     <input class="form-control" id="dest" name="travel_dest" placeholder="请输入景点名称">
                 </div>
+                <div class="col">
+                    <label for="sel1">备注:</label>
+                    <input class="form-control" id="remark" name="remark" placeholder="备注/简介">
+                </div>
             </div><br>
             <div class="border-top"></div><br>
             <div class="row">
