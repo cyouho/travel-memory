@@ -34,18 +34,23 @@ class AddRecordController extends Controller
         $region = $formdata['region'];
         $travelDate = $formdata['travelDate'];
         $userId = $formdata['userId'];
+        $timestamp = time();
         $insertTravelData = [
-            'user_id'         => $userId,
-            'province_adcode' => $this->_map['nation']['中国'][$province],
-            'province'        => $province,
-            'city_adcode'     => $city !== '-' ? $this->_map['city'][$province][$city] : 0,
-            'city'            => $city,
-            'region_adcode'   => $region !== '-' ? $this->_map['region'][$province][$city][$region] : 0,
-            'region'          => $region,
-            'travel_date'     => strtotime($travelDate),
+            'user_id'          => $userId,
+            'province_adcode'  => $this->_map['nation']['中国'][$province],
+            'province'         => $province,
+            'city_adcode'      => $city !== '-' ? $this->_map['city'][$province][$city] : 0,
+            'city'             => $city,
+            'region_adcode'    => $region !== '-' ? $this->_map['region'][$province][$city][$region] : 0,
+            'region'           => $region,
+            'travel_date'      => strtotime($travelDate),
+            'record_create_at' => $timestamp,
+            'record_update_at' => $timestamp,
         ];
         $record = new Record();
-        $record->insertTravelRecord($insertTravelData);
+
+        // 使用 insertGetId 获取插入后的自增id | 插入内容: 旅行地点，旅行时间
+        $recordId = $record->insertTravelRecord($insertTravelData);
         return response()->redirectTo('/addRecord');
     }
 
