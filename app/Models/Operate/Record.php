@@ -21,4 +21,11 @@ class Record extends Model
 
         return $id;
     }
+
+    public function insertTravelDetail($data)
+    {
+        $affected = DB::table('travel_detail_record')->insert(
+            $data
+        );
+    }
 }
