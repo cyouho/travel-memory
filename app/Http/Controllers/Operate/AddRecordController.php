@@ -100,6 +100,13 @@ class AddRecordController extends Controller
         return view('Operate.AddRecord.add_record_ajax_result', $result);
     }
 
+    /**
+     * 添加旅行详细 | 插入内容: 景点名，备注
+     * @param string $travelId
+     * @param int $userId
+     * @param string $spotName
+     * @param string $remark
+     */
     public function addTravelDetail($travelId, $userId, $spotName, $remark)
     {
         $data = [
