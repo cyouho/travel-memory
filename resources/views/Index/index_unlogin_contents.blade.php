@@ -35,10 +35,10 @@
     <div class="col-sm-4">
         <div class="whats-new">
             <h6 class="font-weight-bold">更新:</h6>
-            <p class="text-left">2021-12-07 更新功能，可以添加景点，备注。<span class="label label-default">New</span></p>
+            <p class="text-left">2021-12-09 更新功能，景点名和备注添加字数限制。<span class="label label-default">New</span></p>
+            <p class="text-left">2021-12-07 更新功能，可以添加景点，备注。</p>
             <p class="text-left">2021-12-03 更新设置页面，区别于个人主页的技术栈。</p>
             <p class="text-left">2021-12-01 更新未登录时主页图片轮播显示。</p>
-            <p class="text-left">2021-11-30 更新个人主页 <code>ajax</code> 方法。</p>
         </div>
     </div>
     <div class="col-sm-4"></div>
