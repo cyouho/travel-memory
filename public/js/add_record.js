@@ -38,6 +38,20 @@ $(document).ready(function () {
         }
     });
 
+    $("#remarkCount").text("还可以输入" + (140 - $("#remark").val().length) + "个字");
+    $("#remark").keyup(function () {
+        if ($("#remark").val().length > 140) {
+            $("#remark").val($("#remark").val().substring(0, 140));
+        }
+        $("#remarkCount").text("还可以输入" + (140 - $("#remark").val().length) + "个字");
+    });
 
+    $("#destCount").text("还可以输入" + (30 - $("#dest").val().length) + "个字");
+    $("#dest").keyup(function () {
+        if ($("#dest").val().length > 30) {
+            $("#dest").val($("#dest").val().substring(0, 30));
+        }
+        $("#destCount").text("还可以输入" + (30 - $("#dest").val().length) + "个字");
+    });
 
 });
