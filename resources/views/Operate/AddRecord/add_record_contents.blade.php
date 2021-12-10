@@ -38,12 +38,12 @@
             </div><br>
             <div class="row">
                 <div class="col">
-                    <label for="sel1">景点名:</label>
+                    <label for="sel1">景点名（30字以内）:</label>
                     <input class="form-control" id="dest" name="travel_dest" placeholder="请输入景点名称">
                     <a id="destCount" style="color:#9B9B9B;text-decoration: none;font-size:12px;">还可以输入30个字</a>
                 </div>
                 <div class="col">
-                    <label for="sel1">备注:</label>
+                    <label for="sel1">备注（140字以内）:</label>
                     <input class="form-control" id="remark" name="remark" placeholder="备注/简介">
                     <a id="remarkCount" style="color:#9B9B9B;text-decoration: none;font-size:12px;">还可以输入12个字</a>
                 </div>

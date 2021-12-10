@@ -115,6 +115,14 @@ body {
     height: 600px;
 }
 
+.select-width {
+    max-width:80%;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+}
+
 /* 导航栏背景色 */
 .navbar-custom {
     background-color: rgb(221, 92, 80);
