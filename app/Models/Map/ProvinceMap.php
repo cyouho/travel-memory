@@ -22,4 +22,10 @@ class ProvinceMap extends Model
 
         return $result;
     }
+
+    public function getChinaProvinceDetailDataBy30Days($userId)
+    {
+        $result = DB::select('select province_adcode, province, from_unixtime(travel_date, "%Y-%m-%d") as travel_date from china_province_map_record where user_id = ? and (DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= FROM_UNIXTIME(travel_date, "%Y-%m-%d")) order by travel_date desc', [$userId]);
+        return $result;
+    }
 }

@@ -4,6 +4,7 @@
     @include('Global.global_header')
     <link rel="stylesheet" href="/css/page.css">
     <script src="/js/china_province_city_map.js"></script>
+    <script src="/js/province_detail.js"></script>
     @include('Global.global_navbar')
 </head>
 
