@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Province;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Map\ProvinceMap;
+use App\Http\Controllers\Utils;
+use App\Models\User\User;
 
 class ProvinceController extends Controller
 {
@@ -22,12 +24,41 @@ class ProvinceController extends Controller
 
         $provinceAdcode = $this->_map['nation']['中国'][$province];
 
+        $userId = $this->getUserIdBySession();
+
+        $travelRecordObj = $this->getChinaProvinceMapDataByUserId($userId);
+        $travelRecord = Utils::getArrFromObj($travelRecordObj);
+
         return view('Province.province_layer', [
             'province' => [
-                'province_name' => $province,
+                'province_name'   => $province,
                 'province_adcode' => $provinceAdcode,
+                'travel_record'   => $travelRecord,
             ], // e.g. '云南省' => 530000
         ]);
+    }
+
+    public function getProvinceDetailData($userId)
+    {
+        $provinceMap = new ProvinceMap();
+        $data = $provinceMap->getChinaProvinceDetailDataBy30Days($userId);
+    }
+
+    public function getUserIdBySession()
+    {
+        $session = Utils::getCookie();
+        $user = new User();
+        $result = $user->getUserId(['user_session' => $session]);
+
+        return $result[0]->user_id;
+    }
+
+    public function getChinaProvinceMapDataByUserId($userId)
+    {
+        $map = new ProvinceMap();
+        $data = $map->getChinaProvinceDetailDataBy30Days($userId);
+
+        return $data;
     }
 
     public function chinaProvinceMapDataAjax(Request $request)
