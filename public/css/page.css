@@ -123,6 +123,15 @@ body {
     margin-right: auto;
 }
 
+.province_detail {
+    max-width:80%;
+    width: 100%;
+}
+
+.province_detail_gap {
+    height: 50px;
+}
+
 /* 导航栏背景色 */
 .navbar-custom {
     background-color: rgb(221, 92, 80);

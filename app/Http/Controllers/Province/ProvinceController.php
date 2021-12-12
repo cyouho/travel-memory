@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 use App\Models\Map\ProvinceMap;
 use App\Http\Controllers\Utils;
 use App\Models\User\User;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 
 class ProvinceController extends Controller
 {
     //
     private $_map = [];
+
+    private $_showPerPage = 3;
 
     public function __construct()
     {
@@ -24,41 +27,12 @@ class ProvinceController extends Controller
 
         $provinceAdcode = $this->_map['nation']['中国'][$province];
 
-        $userId = $this->getUserIdBySession();
-
-        $travelRecordObj = $this->getChinaProvinceMapDataByUserId($userId);
-        $travelRecord = Utils::getArrFromObj($travelRecordObj);
-
         return view('Province.province_layer', [
             'province' => [
                 'province_name'   => $province,
                 'province_adcode' => $provinceAdcode,
-                'travel_record'   => $travelRecord,
             ], // e.g. '云南省' => 530000
         ]);
-    }
-
-    public function getProvinceDetailData($userId)
-    {
-        $provinceMap = new ProvinceMap();
-        $data = $provinceMap->getChinaProvinceDetailDataBy30Days($userId);
-    }
-
-    public function getUserIdBySession()
-    {
-        $session = Utils::getCookie();
-        $user = new User();
-        $result = $user->getUserId(['user_session' => $session]);
-
-        return $result[0]->user_id;
-    }
-
-    public function getChinaProvinceMapDataByUserId($userId)
-    {
-        $map = new ProvinceMap();
-        $data = $map->getChinaProvinceDetailDataBy30Days($userId);
-
-        return $data;
     }
 
     public function chinaProvinceMapDataAjax(Request $request)
@@ -83,6 +57,76 @@ class ProvinceController extends Controller
         //     $i++;
         // }
         return response()->json($chinaProvinceMapData)->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getChinaProvinceDetailAjax(Request $request)
+    {
+        $formData = $request->post();
+        $userId = $formData['user_id'];
+        $province = $formData['province'];
+        $date = $formData['date'];
+        $page = $formData['page'];
+        $travelDetail = $this->getChinaProvinceRecordDetailData($userId, $province, $page, $date);
+        $totalTravelRecord = $this->countTotalTravelRecord($userId, $province, $date);
+
+        return view('Province.province_detail', [
+            'detail' => [
+                'travel_detail' => $travelDetail,
+                'paginate'      => [
+                    'total_page' => $totalTravelRecord,
+                    'now_page'   => $page,
+                ],
+            ]
+        ]);
+    }
+
+    public function getTravelDateDetailAjax(Request $request)
+    {
+        $formData = $request->post();
+        $userId = $formData['user_id'];
+        $province = $formData['province'];
+
+        $travelRecordYear = $this->getTravelRecordByYear($userId, $province);
+
+        return view('Province.province_date', [
+            'date' => $travelRecordYear,
+        ]);
+    }
+
+    /**
+     * 获取分页时，每页的数据
+     */
+    public function getChinaProvinceRecordDetailData($userId, $province, $page, $date)
+    {
+        $map = new ProvinceMap();
+        $num = $this->_showPerPage;
+        $page = ($page - 1) * $num;
+        $result = $map->getChinaProvinceDetailData($userId, $province, $page, $num);
+
+        return $result;
+    }
+
+    /**
+     * 计算最大分页数
+     */
+    public function countTotalTravelRecord($userId, $province, $date)
+    {
+        $map = new ProvinceMap();
+        $result = $map->countTravelDetailRecord($userId, $province, $date);
+        $maxPage = ceil($result[0]->total_page / $this->_showPerPage);
+
+        return $maxPage;
+    }
+
+    /**
+     * 获取旅游了多少年
+     */
+    public function getTravelRecordByYear($userId, $province)
+    {
+        $map = new ProvinceMap();
+        $result = $map->getTravelRecordByYear($userId, $province);
+
+        return $result;
     }
 
     /**
