@@ -14,3 +14,5 @@
 <p align="center">未登录首页<a href="https://github.com/cyouho/travel-memory" target="_blank"><img src="public/images/repository/index_unlogin.png"></a></p>
 
 <p align="center">登录后首页<a href="https://github.com/cyouho/travel-memory" target="_blank"><img src="public/images/repository/index_login.png"></a></p>
+
+<p align="center">市/州详细记录<a href="https://github.com/cyouho/travel-memory" target="_blank"><img src="public/images/repository/province_detail.png"></a></p>
