@@ -1,7 +1,7 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>市</th>
+            <th>市/州</th>
             <th>日期</th>
         </tr>
     </thead>
