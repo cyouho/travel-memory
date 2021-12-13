@@ -41,7 +41,13 @@ $(document).ready(function () {
     });
 
     $("#sel3").change(function () {
-        date = $("#sel3").find("option:selected").val();
-        $("#sel3").load('/getTravelDateDetailAjax', { 'user_id': userId, 'province': province, '_token': token });
+        date = $(this).val();
+        selector = "#" + date;
+        $("#sel3 option").removeAttr("selected");
+        $(selector).attr("selected", true);
+        page = 1;
+        $("#province_detail").load('/getChinaProvinceDetailAjax', {
+            'user_id': userId, 'province': province, 'date': date, 'page': parseInt(page), '_token': token
+        });
     });
 });

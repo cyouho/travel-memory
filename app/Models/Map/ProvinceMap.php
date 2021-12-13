@@ -30,16 +30,42 @@ class ProvinceMap extends Model
         return $result;
     }
 
-    public function getChinaProvinceDetailData($userId, $province, $page, $num)
+    /**
+     * 30 天以内
+     */
+    public function getChinaProvinceDetailData($userId, $province, $page, $num, $date)
     {
-        $result = DB::select('select city_adcode, city, from_unixtime(travel_date, "%Y-%m-%d") as travel_date from china_province_map_record where user_id = ? and province = ? and (DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= FROM_UNIXTIME(travel_date, "%Y-%m-%d")) order by travel_date desc limit ?, ?', [$userId, $province, $page, $num]);
+        $result = DB::select('select city_adcode, city, from_unixtime(travel_date, "%Y-%m-%d") as travel_date from china_province_map_record where user_id = ? and province = ? and (DATE_SUB(CURDATE(), INTERVAL ' . $date . ') <= FROM_UNIXTIME(travel_date, "%Y-%m-%d")) order by travel_date desc limit ?, ?', [$userId, $province, $page, $num]);
 
         return $result;
     }
 
+    /**
+     * 30 天以内的总数
+     */
     public function countTravelDetailRecord($userId, $province, $date)
     {
-        $result = DB::select('select count(*) as total_page from china_province_map_record where user_id = ? and province = ? and (DATE_SUB(CURDATE(), INTERVAL 30 DAY) <= FROM_UNIXTIME(travel_date, "%Y-%m-%d"))', [$userId, $province]);
+        $result = DB::select('select count(*) as total_page from china_province_map_record where user_id = ? and province = ? and (DATE_SUB(CURDATE(), INTERVAL ' . $date . ') <= FROM_UNIXTIME(travel_date, "%Y-%m-%d"))', [$userId, $province]);
+
+        return $result;
+    }
+
+    /**
+     * 按照年份
+     */
+    public function getChinaProvinceDetailDataByYear($userId, $province, $page, $num, $date)
+    {
+        $result = DB::select('select city_adcode, city, from_unixtime(travel_date, "%Y-%m-%d") as travel_date from china_province_map_record where user_id = ? and province = ? and ? = FROM_UNIXTIME(travel_date, "%Y") order by travel_date desc limit ?, ?', [$userId, $province, $date, $page, $num]);
+
+        return $result;
+    }
+
+    /**
+     * 按照年份的总数
+     */
+    public function countTravelDetailRecordByYear($userId, $province, $date)
+    {
+        $result = DB::select('select count(*) as total_page from china_province_map_record where user_id = ? and province = ? and ? = FROM_UNIXTIME(travel_date, "%Y")', [$userId, $province, $date]);
 
         return $result;
     }

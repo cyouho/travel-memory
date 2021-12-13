@@ -14,7 +14,10 @@ class ProvinceController extends Controller
     //
     private $_map = [];
 
-    private $_showPerPage = 3;
+    /**
+     * 地图详细数据分页每页显示数据量
+     */
+    private $_showPerPage = 5;
 
     public function __construct()
     {
@@ -66,8 +69,24 @@ class ProvinceController extends Controller
         $province = $formData['province'];
         $date = $formData['date'];
         $page = $formData['page'];
-        $travelDetail = $this->getChinaProvinceRecordDetailData($userId, $province, $page, $date);
-        $totalTravelRecord = $this->countTotalTravelRecord($userId, $province, $date);
+
+        if ($date == '30days' || $date == '3months') {
+            switch ($date) {
+                case '30days':
+                    $date = '30 DAY';
+                    break;
+                case '3months':
+                    $date = '3 MONTH';
+                    break;
+                default:
+                    $date = '30 DAY';
+            }
+            $travelDetail = $this->getChinaProvinceRecordDetailData($userId, $province, $page, (string)$date, $symbol = 'inAYear');
+            $totalTravelRecord = $this->countTotalTravelRecord($userId, $province, $date, $symbol = 'inAYear');
+        } else {
+            $travelDetail = $this->getChinaProvinceRecordDetailData($userId, $province, $page, $date);
+            $totalTravelRecord = $this->countTotalTravelRecord($userId, $province, $date);
+        }
 
         return view('Province.province_detail', [
             'detail' => [
@@ -96,12 +115,17 @@ class ProvinceController extends Controller
     /**
      * 获取分页时，每页的数据
      */
-    public function getChinaProvinceRecordDetailData($userId, $province, $page, $date)
+    public function getChinaProvinceRecordDetailData($userId, $province, $page, $date, $symbol = 'outAYear')
     {
         $map = new ProvinceMap();
         $num = $this->_showPerPage;
         $page = ($page - 1) * $num;
-        $result = $map->getChinaProvinceDetailData($userId, $province, $page, $num);
+
+        if ($symbol == 'inAYear') {
+            $result = $map->getChinaProvinceDetailData($userId, $province, $page, $num, $date);
+        } else {
+            $result = $map->getChinaProvinceDetailDataByYear($userId, $province, $page, $num, $date);
+        }
 
         return $result;
     }
@@ -109,10 +133,16 @@ class ProvinceController extends Controller
     /**
      * 计算最大分页数
      */
-    public function countTotalTravelRecord($userId, $province, $date)
+    public function countTotalTravelRecord($userId, $province, $date, $symbol = 'outAYear')
     {
         $map = new ProvinceMap();
-        $result = $map->countTravelDetailRecord($userId, $province, $date);
+
+        if ($symbol == 'inAYear') {
+            $result = $map->countTravelDetailRecord($userId, $province, $date);
+        } else {
+            $result = $map->countTravelDetailRecordByYear($userId, $province, $date);
+        }
+
         $maxPage = ceil($result[0]->total_page / $this->_showPerPage);
 
         return $maxPage;
