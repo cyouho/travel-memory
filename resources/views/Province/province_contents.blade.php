@@ -12,6 +12,7 @@
             <option value="3months" id="3months">近3个月</option>
         </select>
         <div class="province_detail_gap"></div>
+        <div><h3 id="province_title" class="text-center province_title">{{ $province['province_name'] }}</h3></div><br>
         <div id="province_detail" class="province_detail">
 
         </div>
