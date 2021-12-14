@@ -11,6 +11,11 @@ class CityController extends Controller
     //
     private $_map = [];
 
+    /**
+     * 地图详细数据分页每页显示数据量
+     */
+    private $_showPerPage = 5;
+
     public function __construct()
     {
         $this->_map = config('map');
@@ -40,5 +45,102 @@ class CityController extends Controller
         $chinaProvinceMapData = $province->getChinaProvinceCityRegionMapDataAll($userId, $cityName);
 
         return response()->json($chinaProvinceMapData)->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getChinaProvinceDetailAjax(Request $request)
+    {
+        $formData = $request->post();
+        $userId = $formData['user_id'];
+        $province = $formData['province'];
+        $date = $formData['date'];
+        $page = $formData['page'];
+
+        if ($date == '30days' || $date == '3months') {
+            switch ($date) {
+                case '30days':
+                    $date = '30 DAY';
+                    break;
+                case '3months':
+                    $date = '3 MONTH';
+                    break;
+                default:
+                    $date = '30 DAY';
+            }
+            $travelDetail = $this->getChinaProvinceRecordDetailData($userId, $province, $page, (string)$date, $symbol = 'inAYear');
+            $totalTravelRecord = $this->countTotalTravelRecord($userId, $province, $date, $symbol = 'inAYear');
+        } else {
+            $travelDetail = $this->getChinaProvinceRecordDetailData($userId, $province, $page, $date);
+            $totalTravelRecord = $this->countTotalTravelRecord($userId, $province, $date);
+        }
+
+        return view('City.city_detail', [
+            'detail' => [
+                'travel_detail' => $travelDetail,
+                'paginate'      => [
+                    'total_page' => $totalTravelRecord,
+                    'now_page'   => $page,
+                ],
+            ]
+        ]);
+    }
+
+    public function getTravelDateDetailAjax(Request $request)
+    {
+        $formData = $request->post();
+        $userId = $formData['user_id'];
+        $province = $formData['province'];
+
+        $travelRecordYear = $this->getTravelRecordByYear($userId, $province);
+
+        return view('Province.province_date', [
+            'date' => $travelRecordYear,
+        ]);
+    }
+
+    /**
+     * 获取分页时，每页的数据
+     */
+    public function getChinaProvinceRecordDetailData($userId, $province, $page, $date, $symbol = 'outAYear')
+    {
+        $map = new RegionMap();
+        $num = $this->_showPerPage;
+        $page = ($page - 1) * $num;
+
+        if ($symbol == 'inAYear') {
+            $result = $map->getChinaProvinceDetailData($userId, $province, $page, $num, $date);
+        } else {
+            $result = $map->getChinaProvinceDetailDataByYear($userId, $province, $page, $num, $date);
+        }
+
+        return $result;
+    }
+
+    /**
+     * 计算最大分页数
+     */
+    public function countTotalTravelRecord($userId, $province, $date, $symbol = 'outAYear')
+    {
+        $map = new RegionMap();
+
+        if ($symbol == 'inAYear') {
+            $result = $map->countTravelDetailRecord($userId, $province, $date);
+        } else {
+            $result = $map->countTravelDetailRecordByYear($userId, $province, $date);
+        }
+
+        $maxPage = ceil($result[0]->total_page / $this->_showPerPage);
+
+        return $maxPage;
+    }
+
+    /**
+     * 获取旅游了多少年
+     */
+    public function getTravelRecordByYear($userId, $province)
+    {
+        $map = new RegionMap();
+        $result = $map->getTravelRecordByYear($userId, $province);
+
+        return $result;
     }
 }

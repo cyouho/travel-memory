@@ -123,16 +123,19 @@ body {
     margin-right: auto;
 }
 
-.province_detail {
+.province_detail,
+.region_detail {
     max-width:90%;
     width: 100%;
 }
 
-.province_detail_gap {
+.province_detail_gap,
+.region_detail_gap {
     height: 30px;
 }
 
-.province_title {
+.province_title,
+.region_title {
     max-width: 90%;
     width: 100%;
 }
