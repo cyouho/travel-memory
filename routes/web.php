@@ -119,6 +119,10 @@ Route::middleware(['user'])->group(function () {
     Route::post('/getTravelDateDetailForRegionAjax', [
         CityController::class, 'getTravelDateDetailAjax'
     ]);
+
+    Route::post('/newName', [
+        SettingController::class, 'setNewUserName'
+    ]);
 });
 
 // 获取全国各县市区的方法，功勋方法，必要时使用，暂时注释掉。
