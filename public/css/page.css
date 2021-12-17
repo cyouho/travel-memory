@@ -141,6 +141,16 @@ body {
     width: 100%;
 }
 
+/* 设置页面css设置 */
+.word {
+    color: rgb(221, 92, 80);
+}
+
+.nav-tabs .nav-link.active {
+    color: rgba(255,255,255,.8);
+    background-color: rgba(211, 92, 80);
+}
+
 /*--- 导航栏css设置 ---*/
 /* 导航栏背景色 */
 .navbar-custom {

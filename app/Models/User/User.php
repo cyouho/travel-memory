@@ -13,6 +13,7 @@ class User extends Model
 {
     use HasFactory;
 
+    // get | select ----------------------------------------------------------------------------
     public function getUserId($data)
     {
         $key = key($data);
@@ -44,6 +45,7 @@ class User extends Model
         return $result[0]->gone;
     }
 
+    // update | update ---------------------------------------------------------------------------
     public function updateLastLoginTime($loginTime, $email)
     {
         $affected = DB::update('update users set last_login_at = ? where user_email = ?', [$loginTime, $email]);
@@ -71,6 +73,13 @@ class User extends Model
         }
     }
 
+    public function updateUserName($newUserName, $userId)
+    {
+        $affected = DB::update('update users set user_name = ? where user_id = ?', [$newUserName, $userId]);
+        
+        return $affected;
+    }
+
     /**
      * 更新 user 登录记录里的登录次数
      */
@@ -79,6 +88,7 @@ class User extends Model
         $affected = DB::update('update user_login_record set login_times = login_times + 1 where record_id = ?', [$recordId]);
     }
 
+    // 注册用方法 ------------------------------------------------------------------------------
     public function RegisterSet($email, $password)
     {
         $userName = ModelsUtils::getNameFromEmail($email);
@@ -117,6 +127,7 @@ class User extends Model
         return Hash::check($password, (string)$hashPwd);
     }
 
+    // insert | insert --------------------------------------------------------------------------
     public function insertUserLoginRecord($userId, $timestamp)
     {
         $insertData = [
