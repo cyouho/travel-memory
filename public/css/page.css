@@ -146,6 +146,10 @@ body {
     color: rgb(221, 92, 80);
 }
 
+.divider-border-top-color {
+    border-top-color: rgba(211, 92, 80);
+}
+
 .nav-tabs .nav-link.active {
     color: rgba(255,255,255,.8);
     background-color: rgba(211, 92, 80);

@@ -33,9 +33,18 @@ class SettingController extends Controller
         $result = $user->updateUserName($newUserName, $userId);
 
         if ($result) {
-            return back()->with('success', '更新成功');
+            return back()->with('update_name_success', '更新成功');
         } else {
             return back()->withErrors('更新失败')->withInput();
         }
+    }
+
+    public function setNewUserPassword(Request $request)
+    {
+        $newUserPSW = $request->input('new_user_pwd');
+        $oldUserPSW = $request->input('old_user_pwd');
+        $userId = $request->input('user_id');
+
+        return back()->with('update_password_success', 'success');
     }
 }
