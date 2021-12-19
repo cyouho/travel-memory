@@ -35,10 +35,10 @@
     <div class="col-sm-4">
         <div class="whats-new">
             <h6 class="font-weight-bold">更新:</h6>
-            <p class="text-left">2021-12-17 增加功能，修改用户名。<span class="label label-default">New</span></p>
+            <p class="text-left">2021-12-19 增加功能，修改用户密码。<span class="label label-default">New</span></p>
+            <p class="text-left">2021-12-17 增加功能，修改用户名。</p>
             <p class="text-left">2021-12-14 增加功能，显示市/区的详细记录。</p>
             <p class="text-left">2021-12-13 增加功能，显示市/州的详细记录。</p>
-            <p class="text-left">2021-12-09 更新功能，景点名和备注添加字数限制。</p>
         </div>
     </div>
     <div class="col-sm-4"></div>
