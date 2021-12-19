@@ -80,6 +80,12 @@ class User extends Model
         return $affected;
     }
 
+    public function updateUserPassword($newPassword, $userId)
+    {
+        $password = Hash::make($newPassword);
+        $affected = DB::update('update users set user_password = ? where user_id = ?', [$password, $userId]);
+    }
+
     /**
      * 更新 user 登录记录里的登录次数
      */

@@ -20,12 +20,12 @@
                     {{session('update_name_success')}}
                 </div>
                 @endif
-                @foreach($errors->all() as $error)
+                @if ($errors->update_name_errMSG->first())
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    {{ $error }}
+                    {{ $errors->update_name_errMSG->first() }}
                 </div>
-                @endforeach
+                @endif
 
                 <br><br>
                 <div class="dropdown-divider divider-border-top-color"></div><br><br>
@@ -47,13 +47,12 @@
                     {{session('update_password_success')}}
                 </div>
                 @endif
-                @foreach($errors->all() as $error)
+                @if ($errors->update_password_errMSG->first())
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    {{ $error }}
+                    {{ $errors->update_password_errMSG->first() }}
                 </div>
-                @endforeach
-
+                @endif
             </div>
         </div>
     </div>
