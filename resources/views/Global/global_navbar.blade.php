@@ -48,6 +48,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="/home">个人主页</a>
+                <a class="dropdown-item" href="/travelDetail">旅行详情</a>
                 <a class="dropdown-item" href="/setting/profile">设置</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/logout">退出</a>

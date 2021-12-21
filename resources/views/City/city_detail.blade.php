@@ -3,13 +3,17 @@
         <tr>
             <th>区/县</th>
             <th>日期</th>
+            <th>操作</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($detail['travel_detail'] as $travelDetail)
-        <tr>
-            <td>{{ $travelDetail->region }}</td>
-            <td>{{ $travelDetail->travel_date }}</td>
+        <tr class="detail_tr">
+            <td id="{{ $travelDetail->record_id }}-region">{{ $travelDetail->region }}</td>
+            <td id="{{ $travelDetail->record_id }}-date">{{ $travelDetail->travel_date }}</td>
+            <td><button type="button" class="btn btn-primary btn-sm show-detail" id="{{ $travelDetail->record_id }}" data-toggle="modal" data-target="#myModal">显示详细</button>
+                <button type="button" class="btn btn-primary btn-sm show-detail" id="{{ $travelDetail->record_id }}" data-toggle="modal" data-target="#myModal">修改</button>
+            </td>
         </tr>
         @endforeach
     </tbody>

@@ -10,6 +10,13 @@ class Record extends Model
 {
     use HasFactory;
 
+    public function selectTravelDetail($userId, $travelId)
+    {
+        $result = DB::select('select spot_name, remark from travel_detail_record where user_id = ? and travel_id = ?', [$userId, $travelId]);
+
+        return $result;
+    }
+
     public function insertTravelRecord($data)
     {
         $timestamp = time();
