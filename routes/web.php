@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\City\CityController;
+use App\Http\Controllers\Home\DetailController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Index\IndexController;
 use App\Http\Controllers\Login\LoginController;
@@ -126,6 +127,14 @@ Route::middleware(['user'])->group(function () {
 
     Route::post('/newPassword', [
         SettingController::class, 'setNewUserPassword'
+    ]);
+
+    Route::get('/travelDetail', [
+        DetailController::class, 'index'
+    ]);
+
+    Route::post('/travelDetailModalAjax', [
+        CityController::class, 'travelDetailModalAjax'
     ]);
 });
 

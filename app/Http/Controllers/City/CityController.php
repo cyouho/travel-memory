@@ -5,6 +5,7 @@ namespace App\Http\Controllers\City;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Map\RegionMap;
+use App\Models\Operate\Record;
 
 class CityController extends Controller
 {
@@ -95,6 +96,28 @@ class CityController extends Controller
         return view('Province.province_date', [
             'date' => $travelRecordYear,
         ]);
+    }
+
+    /**
+     * 显示旅行详细表格的 ajax 方法
+     */
+    public function travelDetailModalAjax(Request $request)
+    {
+        $formData = $request->post();
+        $userId = $formData['userId'];
+        $recordId = $formData['recordId'];
+
+        $record = new Record();
+        $travelDetail = $record->selectTravelDetail($userId, $recordId);
+
+        if (isset($travelDetail[0])) {
+            if (is_null($travelDetail[0]->spot_name)) $travelDetail[0]->spot_name = '-';
+            if (is_null($travelDetail[0]->remark)) $travelDetail[0]->remark = '-';
+
+            return response()->json($travelDetail[0])->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+        }
+
+        return response()->json(['spot_name' => '-', 'remark' => '-'])->setEncodingOptions(JSON_UNESCAPED_UNICODE);
     }
 
     /**

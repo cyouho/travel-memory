@@ -50,4 +50,30 @@ $(document).ready(function () {
             'user_id': userId, 'province': province, 'date': date, 'page': parseInt(page), '_token': token
         });
     });
+
+    $("#region_detail").on("click", ".show-detail", function () {
+        recordId = $(this).attr("id");
+        region = $("#" + recordId + "-region").text();
+        regionDate = $("#" + recordId + "-date").text();
+
+        $.ajax({
+            url: "/travelDetailModalAjax",
+            type: "POST",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                "userId": userId,
+                "recordId": recordId,
+            },
+            success: function (data) {
+                $("#travel-dest-text").text(region);
+                $("#travel-date-text").text(regionDate);
+                $("#travel-spot-text").text("-");
+                $("#travel-spot-text").text(data['spot_name']);
+                $("#travel-remark-text").text("-");
+                $("#travel-remark-text").text(data['remark']);
+            }
+        })
+    });
 });

@@ -30,17 +30,17 @@ class RegionMap extends Model
     }
 
     /**
-     * 30 天以内
+     * 30 天以内 | table: china_province_map_record
      */
     public function getChinaProvinceDetailData($userId, $province, $page, $num, $date)
     {
-        $result = DB::select('select region_adcode, region, from_unixtime(travel_date, "%Y-%m-%d") as travel_date from china_province_map_record where user_id = ? and city = ? and (DATE_SUB(CURDATE(), INTERVAL ' . $date . ') <= FROM_UNIXTIME(travel_date, "%Y-%m-%d")) order by travel_date desc limit ?, ?', [$userId, $province, $page, $num]);
+        $result = DB::select('select record_id, region_adcode, region, from_unixtime(travel_date, "%Y-%m-%d") as travel_date from china_province_map_record where user_id = ? and city = ? and (DATE_SUB(CURDATE(), INTERVAL ' . $date . ') <= FROM_UNIXTIME(travel_date, "%Y-%m-%d")) order by travel_date desc limit ?, ?', [$userId, $province, $page, $num]);
 
         return $result;
     }
 
     /**
-     * 30 天以内的总数
+     * 30 天以内的总数 | table: china_province_map_record
      */
     public function countTravelDetailRecord($userId, $province, $date)
     {
@@ -50,17 +50,17 @@ class RegionMap extends Model
     }
 
     /**
-     * 按照年份
+     * 按照年份 | table: china_province_map_record
      */
     public function getChinaProvinceDetailDataByYear($userId, $province, $page, $num, $date)
     {
-        $result = DB::select('select region_adcode, region, from_unixtime(travel_date, "%Y-%m-%d") as travel_date from china_province_map_record where user_id = ? and city = ? and ? = FROM_UNIXTIME(travel_date, "%Y") order by travel_date desc limit ?, ?', [$userId, $province, $date, $page, $num]);
+        $result = DB::select('select record_id, region_adcode, region, from_unixtime(travel_date, "%Y-%m-%d") as travel_date from china_province_map_record where user_id = ? and city = ? and ? = FROM_UNIXTIME(travel_date, "%Y") order by travel_date desc limit ?, ?', [$userId, $province, $date, $page, $num]);
 
         return $result;
     }
 
     /**
-     * 按照年份的总数
+     * 按照年份的总数 | table: china_province_map_record
      */
     public function countTravelDetailRecordByYear($userId, $province, $date)
     {
