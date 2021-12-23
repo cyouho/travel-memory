@@ -12,7 +12,8 @@
             <td id="{{ $travelDetail->record_id }}-region">{{ $travelDetail->region }}</td>
             <td id="{{ $travelDetail->record_id }}-date">{{ $travelDetail->travel_date }}</td>
             <td><button type="button" class="btn btn-primary btn-sm show-detail" id="{{ $travelDetail->record_id }}" data-toggle="modal" data-target="#myModal">显示详细</button>
-                <button type="button" class="btn btn-primary btn-sm show-detail" id="{{ $travelDetail->record_id }}" data-toggle="modal" data-target="#myModal">修改</button>
+                <button type="button" class="btn btn-warning btn-sm amend-detail" id="{{ $travelDetail->record_id }}-amend" data-toggle="modal" data-target="#myModalAmend">修改</button>
+                <button type="button" class="btn btn-danger btn-sm delete-detail" id="{{ $travelDetail->record_id }}-delete" data-toggle="modal" data-target="#myModal">删除</button>
             </td>
         </tr>
         @endforeach

@@ -12,6 +12,7 @@
     @include('City.city_contents')
     @include('Global.global_footer')
     @include('City.city_detail_modal')
+    @include('City.city_detail_amend_modal')
 </body>
 
 </html>
