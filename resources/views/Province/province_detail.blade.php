@@ -9,7 +9,7 @@
         @foreach ($detail['travel_detail'] as $travelDetail)
         <tr>
             <td>{{ $travelDetail->city }}</td>
-            <td>{{ $travelDetail->travel_date }}</td>
+            <td>{{ $travelDetail->travel_date }} ~ {{ $travelDetail->travel_date_end != '-' ? $travelDetail->travel_date_end : '至今' }}</td>
         </tr>
         @endforeach
     </tbody>

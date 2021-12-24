@@ -30,9 +30,10 @@ class AddRecordController extends Controller
     {
         $formdata = $request->post();
         $province = $formdata['province'];
-        $city = $formdata['city'];
-        $region = $formdata['region'];
-        $travelDate = $formdata['travelDate'];
+        $city = is_null($formdata['city']) ? '-' : $formdata['city'];
+        $region = is_null($formdata['region']) ? '-' : $formdata['region'];
+        $travelDateStart = $formdata['travelDateStart'];
+        $travelDateEnd = is_null($formdata['travelDateEnd']) ? '-' : $formdata['travelDateEnd'];
         $userId = $formdata['userId'];
         $timestamp = time();
         $spotName = $formdata['travel_dest'];
@@ -45,7 +46,8 @@ class AddRecordController extends Controller
             'city'             => $city,
             'region_adcode'    => $region !== '-' ? $this->_map['region'][$province][$city][$region] : 0,
             'region'           => $region,
-            'travel_date'      => strtotime($travelDate),
+            'travel_date'      => strtotime($travelDateStart),
+            'travel_date_end'  => strtotime($travelDateEnd),
             'record_create_at' => $timestamp,
             'record_update_at' => $timestamp,
         ];

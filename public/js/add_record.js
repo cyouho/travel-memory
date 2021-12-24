@@ -2,12 +2,14 @@ $(document).ready(function () {
     var token = $('meta[name="csrf-token"]').attr('content');
     var date = '';
 
-    $("#datepicker").datepicker({
-        language: "zh-CN",
-        autoclose: true,
-        clearBtn: true,
-        todayBtn: "linked",
-        todayHighlight: true,
+    $(".input-daterange input").each(function () {
+        $(this).datepicker({
+            language: "zh-CN",
+            autoclose: true,
+            clearBtn: true,
+            todayBtn: "linked",
+            todayHighlight: true,
+        });
     });
 
     $("#sel1").change(function () {
@@ -25,13 +27,19 @@ $(document).ready(function () {
 
     $("#record-submit").click(function () {
         province = $("#sel1").val();
-        travelDate = $("#date-input").val();
+        travelDateStart = $("#date-start-input").val();
+        travelDateEnd = $("#date-end-input").val();
+        start = new Date(travelDateStart.replace("-", "/").replace("-", "/"));
+        end = new Date(travelDateEnd.replace("-", "/").replace("-", "/"));
         userId = $("#user-id").val();
         if (province == '-') {
             alert('请选择 省/直辖市/自治区');
             return false;
-        } else if (travelDate == '') {
+        } else if (travelDateStart == '') {
             alert('请选择出游时间');
+            return false;
+        } else if (start > end) {
+            alert('开始日期不能大于结束日期，请检查');
             return false;
         } else if (userId == '') {
             return false;
