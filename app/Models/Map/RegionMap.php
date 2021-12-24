@@ -22,6 +22,9 @@ class RegionMap extends Model
         return $result;
     }
 
+    /**
+     * 旅游了多少年用
+     */
     public function getTravelRecordByYear($userId, $province)
     {
         $result = DB::select('select from_unixtime(travel_date, "%Y") as year_date from china_province_map_record where user_id = ? and city = ? group by from_unixtime(travel_date, "%Y")', [$userId, $province]);
@@ -34,7 +37,7 @@ class RegionMap extends Model
      */
     public function getChinaProvinceDetailData($userId, $province, $page, $num, $date)
     {
-        $result = DB::select('select record_id, region_adcode, region, from_unixtime(travel_date, "%Y-%m-%d") as travel_date from china_province_map_record where user_id = ? and city = ? and (DATE_SUB(CURDATE(), INTERVAL ' . $date . ') <= FROM_UNIXTIME(travel_date, "%Y-%m-%d")) order by travel_date desc limit ?, ?', [$userId, $province, $page, $num]);
+        $result = DB::select('select record_id, region_adcode, region, from_unixtime(travel_date, "%Y-%m-%d") as travel_date, if (travel_date_end = "-", "-", from_unixtime(travel_date_end, "%Y-%m-%d")) as travel_date_end from china_province_map_record where user_id = ? and city = ? and (DATE_SUB(CURDATE(), INTERVAL ' . $date . ') <= FROM_UNIXTIME(travel_date, "%Y-%m-%d")) order by travel_date desc limit ?, ?', [$userId, $province, $page, $num]);
 
         return $result;
     }
@@ -54,7 +57,7 @@ class RegionMap extends Model
      */
     public function getChinaProvinceDetailDataByYear($userId, $province, $page, $num, $date)
     {
-        $result = DB::select('select record_id, region_adcode, region, from_unixtime(travel_date, "%Y-%m-%d") as travel_date from china_province_map_record where user_id = ? and city = ? and ? = FROM_UNIXTIME(travel_date, "%Y") order by travel_date desc limit ?, ?', [$userId, $province, $date, $page, $num]);
+        $result = DB::select('select record_id, region_adcode, region, from_unixtime(travel_date, "%Y-%m-%d") as travel_date, if (travel_date_end = "-", "-", from_unixtime(travel_date_end, "%Y-%m-%d")) as travel_date_end from china_province_map_record where user_id = ? and city = ? and ? = FROM_UNIXTIME(travel_date, "%Y") order by travel_date desc limit ?, ?', [$userId, $province, $date, $page, $num]);
 
         return $result;
     }

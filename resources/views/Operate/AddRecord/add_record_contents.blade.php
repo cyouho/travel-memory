@@ -30,9 +30,10 @@
                 </div>
                 <div class="col">
                     <label for="sel3">选择时间:</label>
-                    <div class="input-group date" id="datepicker">
-                        <input type="text" class="form-control" id="date-input" name="travelDate" onkeydown="return false">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <div class="input-group date input-daterange">
+                        <input type="text" class="form-control" id="date-start-input" name="travelDateStart" placeholder="旅行开始日期" onkeydown="return false">
+                        <div class="input-group-addon">~</div>
+                        <input type="text" class="form-control" id="date-end-input" name="travelDateEnd" placeholder="旅行结束日期" onkeydown="return false">
                     </div>
                 </div>
             </div><br>
