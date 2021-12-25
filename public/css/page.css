@@ -141,7 +141,13 @@ body {
     width: 100%;
 }
 
-/* 设置页面css设置 */
+.amend-date-p,
+.amend-date-text,
+.amend-date-icon {
+    width: 100px;
+}
+
+/*---------------------------------- 设置页面css设置 ----------------------------------*/
 .word {
     color: rgb(221, 92, 80);
 }

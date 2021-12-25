@@ -76,4 +76,49 @@ $(document).ready(function () {
             }
         })
     });
+
+    $("#date-start-amend-input").datepicker({
+        language: "zh-CN",
+        autoclose: true,
+        clearBtn: true,
+        todayBtn: "linked",
+        todayHighlight: true,
+    });
+
+    $("#date-end-amend-input").datepicker({
+        language: "zh-CN",
+        autoclose: true,
+        clearBtn: true,
+        todayBtn: "linked",
+        todayHighlight: true,
+    });
+
+    $("#region_detail").on("click", ".amend-detail", function () {
+        recordId = $(this).attr("record-id");
+        region = $("#" + recordId + "-region").text();
+        regionDate = $("#" + recordId + "-date").text();
+        regionDateEnd = $("#" + recordId + "-end-date").text();
+        $("#travel-dest-amend-text").text(region);
+        $("#travel-date-start-text").text(regionDate);
+        $("#travel-date-end-text").text(regionDateEnd);
+        $.ajax({
+            url: "/travelDetailModalAjax",
+            type: "POST",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                "userId": userId,
+                "recordId": recordId,
+            },
+            success: function (data) {
+                $("#travel-spot-amend-text").text(data['spot_name']);
+                $("#travel-remark-amend-text").text(data['remark']);
+            }
+        })
+    });
+
+    $("#amend-submit").click(function () {
+        alert(123);
+    });
 });
