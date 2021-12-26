@@ -12,7 +12,7 @@
             <td id="{{ $travelDetail->record_id }}-region">{{ $travelDetail->region }}</td>
             <td class="form-inline">
                 <div id="{{ $travelDetail->record_id }}-date">{{ $travelDetail->travel_date }}</div>
-                ~
+                &nbsp;~&nbsp;
                 <div id="{{ $travelDetail->record_id }}-end-date">{{ $travelDetail->travel_date_end != '-' ? $travelDetail->travel_date_end : '至今' }}</div>
             </td>
             <td><button type="button" class="btn btn-primary btn-sm show-detail" id="{{ $travelDetail->record_id }}" data-toggle="modal" data-target="#myModal">显示详细</button>
