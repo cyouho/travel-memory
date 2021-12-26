@@ -13,7 +13,7 @@
             <div class="modal-body">
                 <div id="travel-dest">
                     <h5 id="travel-dest-title">区/县:</h5>
-                    <div id="travel-dest-amend-text"></div>
+                    <div id="travel-dest-amend-text" class="amend-text text-center"></div>
                 </div>
                 <div class="dropdown-divider"></div>
                 <div id="travel-date">
@@ -23,12 +23,16 @@
                         <div id="travel-date-start-text" class="amend-date-text word text-center"></div>
                         <div class="amend-date-icon text-center">-></div>
                         <input type="text" class="form-control" id="date-start-amend-input" name="travelDateEnd" placeholder="旅行开始日期" onkeydown="return false">
+                        <div class="amend-text-gap"></div>
+                        <div id="start-date-alert" class="start-date-alert word"></div>
                     </div><br>
                     <div class="form-inline">
                         <div class="amend-date-p text-center">结束日期:</div>
                         <div id="travel-date-end-text" class="amend-date-text word text-center"></div>
                         <div class="amend-date-icon text-center">-></div>
                         <input type="text" class="form-control" id="date-end-amend-input" name="travelDateEnd" placeholder="旅行结束日期" onkeydown="return false">
+                        <div class="amend-text-gap"></div>
+                        <div id="end-date-alert" class="end-date-alert word"></div>
                     </div>
                 </div>
                 <div class="dropdown-divider"></div>

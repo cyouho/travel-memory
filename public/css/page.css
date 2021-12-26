@@ -142,9 +142,19 @@ body {
 }
 
 .amend-date-p,
+.amend-text,
 .amend-date-text,
 .amend-date-icon {
     width: 100px;
+}
+
+.end-date-alert,
+.start-date-alert {
+    width: auto;
+}
+
+.amend-text-gap {
+    width: 20px;
 }
 
 /*---------------------------------- 设置页面css设置 ----------------------------------*/
