@@ -121,6 +121,38 @@ class CityController extends Controller
     }
 
     /**
+     * 修改显示旅行详细表格的 ajax 方法
+     */
+    public function amendTravelDetailAjax(Request $request)
+    {
+        $formData = $request->post();
+        $userId = $formData['userId'];
+        $recordId = $formData['amendRecordId'];
+        $beforeStart = $formData['beforeStart'];
+        $beforeEnd = $formData['beforeEnd'];
+        $start = $formData['amendStart'];
+        $end = $formData['amendEnd'];
+
+        $updateData = [
+            'travel_date'     => (string)strtotime($start),
+            'travel_date_end' => $end ? (string)strtotime($end) : ($start > $beforeEnd ? '-' : (string)strtotime($end)),
+        ];
+
+        foreach ($updateData as $key => &$value) {
+            if (empty($value)) {
+                unset($updateData[$key]);
+            }
+        }
+        unset($value);
+
+        if (!empty($updateData)) {
+            $record = new Record();
+            $record->updateTravelRecord($userId, $recordId, $updateData);
+            response()->json(true);
+        }
+    }
+
+    /**
      * 获取分页时，每页的数据
      */
     public function getChinaProvinceRecordDetailData($userId, $province, $page, $date, $symbol = 'outAYear')

@@ -35,4 +35,17 @@ class Record extends Model
             $data
         );
     }
+
+    /**
+     * 修改旅行详细记录
+     */
+    public function updateTravelRecord($userId, $recordId, $data)
+    {
+        $affected = DB::table('china_province_map_record')
+            ->where('user_id', $userId)
+            ->where('record_id', $recordId)
+            ->update($data);
+
+        dd($affected);
+    }
 }
