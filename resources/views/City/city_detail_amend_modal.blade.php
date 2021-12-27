@@ -22,7 +22,7 @@
                         <div class="amend-date-p text-center">开始日期:</div>
                         <div id="travel-date-start-text" class="amend-date-text word text-center"></div>
                         <div class="amend-date-icon text-center">-></div>
-                        <input type="text" class="form-control" id="date-start-amend-input" name="travelDateEnd" placeholder="旅行开始日期" onkeydown="return false">
+                        <input type="text" class="form-control" id="date-start-amend-input" name="travelDateStart" placeholder="旅行开始日期" onkeydown="return false">
                         <div class="amend-text-gap"></div>
                         <div id="start-date-alert" class="start-date-alert word"></div>
                     </div><br>

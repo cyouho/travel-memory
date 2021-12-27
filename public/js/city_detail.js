@@ -102,6 +102,7 @@ $(document).ready(function () {
     // 修改详细旅行记录
     $("#region_detail").on("click", ".amend-detail", function () {
         recordId = $(this).attr("record-id");
+        $("#amend-submit").attr("amend-record-id", recordId);
         region = $("#" + recordId + "-region").text();
         regionDate = $("#" + recordId + "-date").text();
         regionDateEnd = $("#" + recordId + "-end-date").text();
@@ -141,14 +142,14 @@ $(document).ready(function () {
 
         if (start > end) {
             $("#start-date-alert").text('');
-            $("#end-date-alert").text(' 结束日期不能大于开始日期');
+            $("#end-date-alert").text(' 结束日期不能早于开始日期');
             $("#amend-submit").attr("disabled", "disabled");
         } else if (end < s_start) {
             if (start <= end) {
                 $("#start-date-alert").text('');
                 $("#end-date-alert").text('');
             } else {
-                $("#end-date-alert").text(' 结束日期不能大于开始日期');
+                $("#end-date-alert").text(' 结束日期不早于修改前开始日期');
                 $("#amend-submit").attr("disabled", "disabled");
             }
         } else if (start > s_start) {
@@ -158,7 +159,7 @@ $(document).ready(function () {
                 $("#amend-submit").removeAttr("disabled");
             } else {
                 $("#end-date-alert").text('');
-                $("#start-date-alert").text(' 开始日期大于修改前结束日期，如不修改结束日期将自动设置结束日期为至今');
+                $("#start-date-alert").text(' 开始日期早于修改前结束日期，如不修改结束日期将自动设置结束日期为至今');
             }
         } else {
             $("#start-date-alert").text('');
@@ -170,17 +171,41 @@ $(document).ready(function () {
     $("#date-start-amend-input").change(function () {
         travelDateStart = $("#date-start-amend-input").val();
         travelDateEnd = $("#date-end-amend-input").val();
+        startDate = $("#travel-date-start-text").text();
         endDate = $("#travel-date-end-text").text();
         start = new Date(travelDateStart.replace("-", "/").replace("-", "/"));
         end = new Date(travelDateEnd.replace("-", "/").replace("-", "/"));
+        s_start = new Date(startDate.replace("-", "/").replace("-", "/"));
         e_end = new Date(endDate.replace("-", "/").replace("-", "/"));
 
         if (start > end) {
             $("#end-date-alert").text('');
-            $("#start-date-alert").text(' 开始日期不能小于结束日期');
+            $("#start-date-alert").text(' 开始日期不能晚于结束日期');
             $("#amend-submit").attr("disabled", "disabled");
         } else if (start > e_end) {
-            $("#start-date-alert").text(' 开始日期大于修改前结束日期，如不修改结束日期将自动设置结束日期为至今');
+            if (start < end) {
+                $("#end-date-alert").text('');
+                $("#start-date-alert").text('');
+                $("#amend-submit").removeAttr("disabled");
+            } else {
+                $("#start-date-alert").text(' 开始日期早于修改前结束日期，如不修改结束日期将自动设置结束日期为至今');
+            }
+        } else if (end < s_start) {
+            if (start > end) {
+                $("#end-date-alert").text('');
+                $("#start-date-alert").text('');
+                $("#start-date-alert").text(' 结束日期早于修改前开始日期');
+                $("#amend-submit").attr("disabled", "disabled");
+            } else if (start <= end) {
+                $("#end-date-alert").text('');
+                $("#start-date-alert").text('');
+                $("#amend-submit").removeAttr("disabled");
+            } else {
+                $("#end-date-alert").text('');
+                $("#start-date-alert").text('');
+                $("#start-date-alert").text(' 结束日期早于修改前开始日期');
+                $("#amend-submit").attr("disabled", "disabled");
+            }
         } else {
             $("#end-date-alert").text('');
             $("#start-date-alert").text('');
@@ -189,6 +214,31 @@ $(document).ready(function () {
     });
 
     $("#amend-submit").click(function () {
-        alert(123);
+        beforeStart = $("#travel-date-start-text").text();
+        beforeEnd = $("#travel-date-end-text").text();
+        amendStart = $("#date-start-amend-input").val();
+        amendEnd = $("#date-end-amend-input").val();
+        amendRecordId = $("#amend-submit").attr("amend-record-id");
+
+        $.ajax({
+            url: "/amendTravelDetailAjax",
+            type: "POST",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                "userId": userId,
+                "amendRecordId": amendRecordId,
+                "beforeStart": beforeStart,
+                "beforeEnd": beforeEnd,
+                "amendStart": amendStart,
+                "amendEnd": amendEnd,
+            },
+            success: function (data) {
+                if (data) {
+                    window.location.reload();
+                }
+            }
+        });
     });
 });
