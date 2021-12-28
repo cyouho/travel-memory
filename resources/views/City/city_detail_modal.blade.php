@@ -11,25 +11,56 @@
 
             <!-- 模态框主体 -->
             <div class="modal-body">
-                <div id="travel-dest">
-                    <h5 id="travel-dest-title">区/县:</h5>
-                    <div id="travel-dest-text"></div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <div id="travel-date">
-                    <h5 id="travel-date-title">旅行日期:</h5>
-                    <div id="travel-date-text"></div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <div id="travel-sopt">
-                    <h5 id="travel-spot-title">景点名:</h5>
-                    <div id="travel-spot-text">-</div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <div id="travel-remark">
-                    <h5 id="travel-remark-title">备注:</h5>
-                    <div id="travel-remark-text">-</div>
-                </div>
+
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>旅行目的地</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="travel-dest-text">-</td>
+                        </tr>
+                    </tbody>
+                </table><br>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="travel-date-text">-</td>
+                        </tr>
+                    </tbody>
+                </table><br>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>景点名</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="travel-spot-text">-</td>
+                        </tr>
+                    </tbody>
+                </table><br>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>备注</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="travel-remark-text">-</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <!-- 模态框底部 -->
