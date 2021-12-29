@@ -10,6 +10,9 @@ class Record extends Model
 {
     use HasFactory;
 
+    /**
+     * 检索旅行详细记录 | 景点名，备注
+     */
     public function selectTravelDetail($userId, $travelId)
     {
         $result = DB::select('select spot_name, remark from travel_detail_record where user_id = ? and travel_id = ?', [$userId, $travelId]);
@@ -17,6 +20,9 @@ class Record extends Model
         return $result;
     }
 
+    /**
+     * 插入旅行详细记录并获取插入的id
+     */
     public function insertTravelRecord($data)
     {
         $timestamp = time();

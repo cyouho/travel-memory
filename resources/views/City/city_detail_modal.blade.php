@@ -16,7 +16,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>旅行目的地</th>
+                            <th>区/县</th>
                         </tr>
                     </thead>
                     <tbody>
