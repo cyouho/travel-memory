@@ -12,4 +12,8 @@ class DetailController extends Controller
     {
         return view('Home.TravelDetail.travel_detail_layer');
     }
+
+    public function ddddd()
+    {
+    }
 }
