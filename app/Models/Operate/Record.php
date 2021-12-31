@@ -20,6 +20,14 @@ class Record extends Model
         return $result;
     }
 
+    public function selectTravelRecord($userId)
+    {
+        $result = DB::select('select record_id, from_unixtime(travel_date, "%Y-%m-%d") as travel_date, if(travel_date_end = "-" , curdate() , from_unixtime(travel_date_end, "%Y-%m-%d")) as travel_date_end from china_province_map_record where user_id = ? and (DATE_SUB(CURDATE(), INTERVAL 1 YEAR) <= FROM_UNIXTIME(travel_date, "%Y-%m-%d"))', [$userId]);
+        //$result = DB::select('select record_id, travel_date, if(travel_date_end = "-" , UNIX_TIMESTAMP(CURDATE()) , travel_date_end) as travel_date_end from china_province_map_record where user_id = ?', [$userId]);
+
+        return $result;
+    }
+
     /**
      * 插入旅行详细记录并获取插入的id
      */

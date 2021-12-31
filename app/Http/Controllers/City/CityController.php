@@ -148,7 +148,7 @@ class CityController extends Controller
         if (!empty($updateData)) {
             $record = new Record();
             $record->updateTravelRecord($userId, $recordId, $updateData);
-            response()->json(true);
+            return response()->json(true);
         }
     }
 
