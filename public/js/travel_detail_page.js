@@ -22,11 +22,11 @@ $(document).ready(function () {
                 tooltip: {
                     show: true,
                     trigger: 'item',
-                    formatter: '{b}<br/>{c} (次)',
+                    formatter: '{c} (次)',
                 },
                 visualMap: {
                     min: 0,
-                    max: 100,
+                    max: 50,
                     type: 'piecewise',
                     orient: 'horizontal',
                     left: 'center',
