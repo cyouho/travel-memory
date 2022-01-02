@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @include('Global.global_header')
     <link rel="stylesheet" href="/css/page.css">
+    <script src="/js/moment/moment.min.js"></script>
     <script src="/js/travel_detail_page.js"></script>
     @include('Global.global_navbar')
 </head>

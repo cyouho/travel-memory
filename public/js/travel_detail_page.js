@@ -1,5 +1,7 @@
 $(document).ready(function () {
     var userId = $("#navbardroplogin").attr("user-id");
+    var currentDate = moment().format('YYYY-MM-DD');
+    var lastYearDate = moment().subtract(1, 'year').format('YYYY-MM-DD');
     var chartDom = document.getElementById('main');
     var myChart = echarts.init(chartDom);
     var option;
@@ -37,7 +39,7 @@ $(document).ready(function () {
                     left: 30,
                     right: 30,
                     cellSize: ['auto', 13],
-                    range: '2021',
+                    range: [lastYearDate, currentDate],
                     itemStyle: {
                         borderWidth: 0.5
                     },
