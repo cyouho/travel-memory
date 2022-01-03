@@ -59,9 +59,27 @@ class DetailController extends Controller
     {
         $formData = $request->post();
         $userId = $formData['userId'];
+        $date = $formData['date'];
 
-        $result = $this->getTravelRecordInAYearForCalendar($userId);
+        if (empty($date)) {
+            $result = $this->getTravelRecordInAYearForCalendar($userId);
+        } else {
+        }
 
         return response()->json($result)->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+    }
+
+    /**
+     * 旅行详细页面<选择年份>下拉菜单获取旅行过的年份
+     */
+    public function getAllTravelYearAjax(Request $request)
+    {
+        $formData = $request->post();
+        $userId = $formData['userId'];
+
+        $record = new Record();
+        $result = $record->selectAllTravelYear($userId);
+
+        return view('Home.TravelDetail.travel_detail_select_year_ajax', ['yearData' => $result]);
     }
 }

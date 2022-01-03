@@ -24,6 +24,14 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div id="home" class="container tab-pane active"><br>
+                        <form>
+                            <div class="form-group">
+                                <label for="sel1">选择年份:</label>
+                                <select class="form-control" id="detail-years">
+
+                                </select>
+                            </div>
+                        </form>
                         <div id="main" style="height: 400px;"></div>
                     </div>
                     <div id="menu1" class="container tab-pane fade"><br>
