@@ -5,6 +5,19 @@ $(document).ready(function () {
     var chartDom = document.getElementById('main');
     var myChart = echarts.init(chartDom);
     var option;
+    var token = $('meta[name="csrf-token"]').attr('content');
+    var date = '';
+    $("#detail-years").change(function () {
+        date = $(this).val();
+        selector = "#" + date;
+        $("#detail-years option").removeAttr("selected");
+        $(selector).attr("selected", true);
+    });
+
+    $("#detail-years").load("/getAllTravelYearAjax", { 'userId': userId, '_token': token });
+
+
+
     $.ajax({
         url: "/getCalendarDataAjax",
         type: "POST",
@@ -13,6 +26,7 @@ $(document).ready(function () {
         },
         data: {
             "userId": userId,
+            "date": date,
         },
         success: function (data) {
             option = {

@@ -20,10 +20,25 @@ class Record extends Model
         return $result;
     }
 
+    /**
+     * 按照时间检索旅行详细记录天数
+     * 旅行详细页面<日历热力图>用
+     */
     public function selectTravelRecord($userId)
     {
         $result = DB::select('select record_id, from_unixtime(travel_date, "%Y-%m-%d") as travel_date, if(travel_date_end = "-" , curdate() , from_unixtime(travel_date_end, "%Y-%m-%d")) as travel_date_end from china_province_map_record where user_id = ? and (DATE_SUB(CURDATE(), INTERVAL 1 YEAR) <= FROM_UNIXTIME(travel_date, "%Y-%m-%d"))', [$userId]);
         //$result = DB::select('select record_id, travel_date, if(travel_date_end = "-" , UNIX_TIMESTAMP(CURDATE()) , travel_date_end) as travel_date_end from china_province_map_record where user_id = ?', [$userId]);
+
+        return $result;
+    }
+
+    /**
+     * 检索详细旅行过的年份
+     * 旅行详细页面<日历热力图>用
+     */
+    public function selectAllTravelYear($userId)
+    {
+        $result = DB::select('select from_unixtime(travel_date, "%Y") as year_date from china_province_map_record where user_id = ? group by from_unixtime(travel_date, "%Y")', [$userId]);
 
         return $result;
     }
@@ -43,6 +58,9 @@ class Record extends Model
         return $id;
     }
 
+    /**
+     * 插入旅行目的地，备注
+     */
     public function insertTravelDetail($data)
     {
         $affected = DB::table('travel_detail_record')->insert(
