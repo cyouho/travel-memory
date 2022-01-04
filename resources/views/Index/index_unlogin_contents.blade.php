@@ -35,10 +35,10 @@
     <div class="col-sm-4">
         <div class="whats-new">
             <h6 class="font-weight-bold">更新:</h6>
-            <p class="text-left">2021-12-21 增加功能，显示景点名，备注。<span class="label label-default">New</span></p>
+            <p class="text-left">2022-01-04 增加功能，显示旅行日历热力图。<span class="label label-default">New</span></p>
+            <p class="text-left">2021-12-21 增加功能，显示景点名，备注。</p>
             <p class="text-left">2021-12-19 增加功能，修改用户密码。</p>
             <p class="text-left">2021-12-17 增加功能，修改用户名。</p>
-            <p class="text-left">2021-12-14 增加功能，显示市/区的详细记录。</p>
         </div>
     </div>
     <div class="col-sm-4"></div>
