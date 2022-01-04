@@ -6,67 +6,72 @@ $(document).ready(function () {
     var myChart = echarts.init(chartDom);
     var option;
     var token = $('meta[name="csrf-token"]').attr('content');
-    var date = '';
+    var date = 'one_year';
+
+    getCalendarData(date);
+
     $("#detail-years").change(function () {
         date = $(this).val();
         selector = "#" + date;
         $("#detail-years option").removeAttr("selected");
         $(selector).attr("selected", true);
+        getCalendarData(date);
     });
 
     $("#detail-years").load("/getAllTravelYearAjax", { 'userId': userId, '_token': token });
 
 
-
-    $.ajax({
-        url: "/getCalendarDataAjax",
-        type: "POST",
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: {
-            "userId": userId,
-            "date": date,
-        },
-        success: function (data) {
-            option = {
-                title: {
-                    top: 30,
-                    left: 'center',
-                    text: '2021 年旅行记录'
-                },
-                tooltip: {
-                    show: true,
-                    trigger: 'item',
-                    formatter: '{c} (次)',
-                },
-                visualMap: {
-                    min: 0,
-                    max: 50,
-                    type: 'piecewise',
-                    orient: 'horizontal',
-                    left: 'center',
-                    top: 65
-                },
-                calendar: {
-                    top: 120,
-                    left: 30,
-                    right: 30,
-                    cellSize: ['auto', 13],
-                    range: [lastYearDate, currentDate],
-                    itemStyle: {
-                        borderWidth: 0.5
+    function getCalendarData() {
+        $.ajax({
+            url: "/getCalendarDataAjax",
+            type: "POST",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                "userId": userId,
+                "date": date,
+            },
+            success: function (data) {
+                option = {
+                    title: {
+                        top: 30,
+                        left: 'center',
+                        text: data['title'] + '年旅行记录'
                     },
-                    yearLabel: { show: false }
-                },
-                series: {
-                    type: 'heatmap',
-                    coordinateSystem: 'calendar',
-                    data: data,
-                }
-            };
+                    tooltip: {
+                        show: true,
+                        trigger: 'item',
+                        formatter: '{c} (次)',
+                    },
+                    visualMap: {
+                        min: 0,
+                        max: 50,
+                        type: 'piecewise',
+                        orient: 'horizontal',
+                        left: 'center',
+                        top: 65
+                    },
+                    calendar: {
+                        top: 120,
+                        left: 30,
+                        right: 30,
+                        cellSize: ['auto', 13],
+                        range: data['time_range'],
+                        itemStyle: {
+                            borderWidth: 0.5
+                        },
+                        yearLabel: { show: false }
+                    },
+                    series: {
+                        type: 'heatmap',
+                        coordinateSystem: 'calendar',
+                        data: data['date'],
+                    }
+                };
 
-            option && myChart.setOption(option);
-        }
-    });
+                option && myChart.setOption(option);
+            }
+        });
+    }
 });

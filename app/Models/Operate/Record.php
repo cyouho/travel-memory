@@ -38,7 +38,18 @@ class Record extends Model
      */
     public function selectAllTravelYear($userId)
     {
-        $result = DB::select('select from_unixtime(travel_date, "%Y") as year_date from china_province_map_record where user_id = ? group by from_unixtime(travel_date, "%Y")', [$userId]);
+        $result = DB::select('select from_unixtime(travel_date, "%Y") as year_date from china_province_map_record where user_id = ? group by from_unixtime(travel_date, "%Y") order by year_date desc', [$userId]);
+
+        return $result;
+    }
+
+    /**
+     * 按照年份检索详细旅行结果 | e.g. 2022 2021 2020 2019
+     * 旅行详细页面<日历热力图>用
+     */
+    public function selectTravelDetailByYear($userId, $year)
+    {
+        $result = DB::select('select from_unixtime(travel_date, "%Y-%m-%d") as travel_date, if (travel_date_end = "-", curdate(), from_unixtime(travel_date_end, "%Y-%m-%d")) as travel_date_end from china_province_map_record where user_id = ? and ? = FROM_UNIXTIME(travel_date, "%Y") order by travel_date desc', [$userId, $year]);
 
         return $result;
     }
