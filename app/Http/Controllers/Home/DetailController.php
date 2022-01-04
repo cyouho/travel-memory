@@ -22,6 +22,73 @@ class DetailController extends Controller
         $record = new Record();
         $result = $record->selectTravelRecord($userId);
 
+        $calendorData = $this->reorganizeDateForCalendar($result);
+
+        return $calendorData;
+    }
+
+    /**
+     * 按照年份获取旅行记录 | e.g. $year = 2021/2022/2023
+     */
+    public function getTravelRecordByYearForCalendar($userId, $date)
+    {
+        $record = new Record();
+        $result = $record->selectTravelDetailByYear($userId, $date);
+
+        $calendorData = $this->reorganizeDateForCalendar($result);
+
+        return $calendorData;
+    }
+
+    /**
+     * 获取旅行天数记录的 ajax 方法
+     * 热力图用
+     */
+    public function getCalendarDataAjax(Request $request)
+    {
+        $formData = $request->post();
+        $userId = $formData['userId'];
+        $date = $formData['date'];
+
+        if ($date === 'one_year') {
+            $result = [
+                'date' => $this->getTravelRecordInAYearForCalendar($userId),
+                'time_range' => [
+                    date("Y-m-d"), // 当前时间
+                    date("Y-m-d", strtotime("-1 years", strtotime(date("Y-m-d")))), // 一年前时间
+                ],
+                'title' => '近一',
+            ];
+        } else {
+            $result = [
+                'date' => $this->getTravelRecordByYearForCalendar($userId, $date),
+                'time_range' => $date,
+                'title' => $date,
+            ];
+        }
+
+        return response()->json($result)->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+    }
+
+    /**
+     * 旅行详细页面<选择年份>下拉菜单获取旅行过的年份
+     */
+    public function getAllTravelYearAjax(Request $request)
+    {
+        $formData = $request->post();
+        $userId = $formData['userId'];
+
+        $record = new Record();
+        $result = $record->selectAllTravelYear($userId);
+
+        return view('Home.TravelDetail.travel_detail_select_year_ajax', ['yearData' => $result]);
+    }
+
+    /**
+     * 整理日历热力图所需日期数据
+     */
+    public function reorganizeDateForCalendar($result)
+    {
         $tests = $result;
         $array = [];
         $j = 0;
@@ -49,37 +116,5 @@ class DetailController extends Controller
         }
 
         return $resultArray;
-    }
-
-    /**
-     * 获取旅行天数记录的 ajax 方法
-     * 热力图用
-     */
-    public function getCalendarDataAjax(Request $request)
-    {
-        $formData = $request->post();
-        $userId = $formData['userId'];
-        $date = $formData['date'];
-
-        if (empty($date)) {
-            $result = $this->getTravelRecordInAYearForCalendar($userId);
-        } else {
-        }
-
-        return response()->json($result)->setEncodingOptions(JSON_UNESCAPED_UNICODE);
-    }
-
-    /**
-     * 旅行详细页面<选择年份>下拉菜单获取旅行过的年份
-     */
-    public function getAllTravelYearAjax(Request $request)
-    {
-        $formData = $request->post();
-        $userId = $formData['userId'];
-
-        $record = new Record();
-        $result = $record->selectAllTravelYear($userId);
-
-        return view('Home.TravelDetail.travel_detail_select_year_ajax', ['yearData' => $result]);
     }
 }
