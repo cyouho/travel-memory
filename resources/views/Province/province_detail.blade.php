@@ -8,7 +8,7 @@
     <tbody>
         @foreach ($detail['travel_detail'] as $travelDetail)
         <tr>
-            <td>{{ $travelDetail->city }}</td>
+            <td><a href="/province/{{ $detail['province_name'] }}/city/{{ $travelDetail->city }}" target="_blank">{{ $travelDetail->city }}</a></td>
             <td>{{ $travelDetail->travel_date }} ~ {{ $travelDetail->travel_date_end != '-' ? $travelDetail->travel_date_end : '至今' }}</td>
         </tr>
         @endforeach
