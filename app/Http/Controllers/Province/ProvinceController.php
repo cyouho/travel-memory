@@ -95,6 +95,7 @@ class ProvinceController extends Controller
                     'total_page' => $totalTravelRecord,
                     'now_page'   => $page,
                 ],
+                'province_name'  => $province,
             ]
         ]);
     }
