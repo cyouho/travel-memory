@@ -37,7 +37,7 @@ $(document).ready(function () {
                     title: {
                         top: 30,
                         left: 'center',
-                        text: data['title'] + '年旅行记录'
+                        text: data['title'] + '年旅行天数'
                     },
                     tooltip: {
                         show: true,
