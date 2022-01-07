@@ -11,7 +11,7 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#home">最新旅行记录</a>
+                        <a class="nav-link active" data-toggle="tab" href="#home">旅行记录热力图</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
