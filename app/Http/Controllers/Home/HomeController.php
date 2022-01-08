@@ -13,6 +13,9 @@ class HomeController extends Controller
         return view('Home.home_layer');
     }
 
+    /**
+     * 显示home页面的sidebar内容用 ajax 方法
+     */
     public function homeContentsAjax(Request $request)
     {
         $formData = $request->post();
