@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    //
+    /**
+     * 显示home主页
+     */
     public function index()
     {
         return view('Home.home_layer');
