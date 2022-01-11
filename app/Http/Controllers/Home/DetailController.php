@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 
 class DetailController extends Controller
 {
-    //
+    /**
+     * 显示旅行详细页面
+     */
     public function index()
     {
         return view('Home.TravelDetail.travel_detail_layer');
