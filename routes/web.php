@@ -148,6 +148,10 @@ Route::middleware(['user'])->group(function () {
     Route::post('/getAllTravelYearAjax', [
         DetailController::class, 'getAllTravelYearAjax'
     ]);
+
+    Route::post('/deleteTravelDetailAjax', [
+        CityController::class, 'deleteTravelDetailAjax'
+    ]);
 });
 
 // 获取全国各县市区的方法，功勋方法，必要时使用，暂时注释掉。

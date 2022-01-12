@@ -48,6 +48,9 @@ class CityController extends Controller
         return response()->json($chinaProvinceMapData)->setEncodingOptions(JSON_UNESCAPED_UNICODE);
     }
 
+    /**
+     * 显示旅行详细记录 ajax 方法
+     */
     public function getChinaProvinceDetailAjax(Request $request)
     {
         $formData = $request->post();
@@ -56,33 +59,7 @@ class CityController extends Controller
         $date = $formData['date'];
         $page = $formData['page'];
 
-        if ($date == '30days' || $date == '3months') {
-            switch ($date) {
-                case '30days':
-                    $date = '30 DAY';
-                    break;
-                case '3months':
-                    $date = '3 MONTH';
-                    break;
-                default:
-                    $date = '30 DAY';
-            }
-            $travelDetail = $this->getChinaProvinceRecordDetailData($userId, $province, $page, (string)$date, $symbol = 'inAYear');
-            $totalTravelRecord = $this->countTotalTravelRecord($userId, $province, $date, $symbol = 'inAYear');
-        } else {
-            $travelDetail = $this->getChinaProvinceRecordDetailData($userId, $province, $page, $date);
-            $totalTravelRecord = $this->countTotalTravelRecord($userId, $province, $date);
-        }
-
-        return view('City.city_detail', [
-            'detail' => [
-                'travel_detail' => $travelDetail,
-                'paginate'      => [
-                    'total_page' => $totalTravelRecord,
-                    'now_page'   => $page,
-                ],
-            ]
-        ]);
+        return $this->showTravelDetailData($userId, $province, $page, $date);
     }
 
     public function getTravelDateDetailAjax(Request $request)
@@ -153,6 +130,23 @@ class CityController extends Controller
     }
 
     /**
+     * 删除旅行详细记录 ajax 方法
+     */
+    public function deleteTravelDetailAjax(Request $request)
+    {
+        $formData = $request->post();
+        $userId = $formData['user_id'];
+        $recordId = $formData['recordId'];
+        $date = $formData['date'];
+        $province = $formData['province'];
+
+        $record = new Record();
+        $record->deleteTravelDetailRecord($userId, $recordId);
+
+        return $this->showTravelDetailData($userId, $province, $page = 1, $date);
+    }
+
+    /**
      * 获取分页时，每页的数据
      */
     public function getChinaProvinceRecordDetailData($userId, $province, $page, $date, $symbol = 'outAYear')
@@ -197,5 +191,39 @@ class CityController extends Controller
         $result = $map->getTravelRecordByYear($userId, $province);
 
         return $result;
+    }
+
+    /**
+     * 显示旅行详细数据
+     */
+    public function showTravelDetailData($userId, $province, $page, $date)
+    {
+        if ($date == '30days' || $date == '3months') {
+            switch ($date) {
+                case '30days':
+                    $date = '30 DAY';
+                    break;
+                case '3months':
+                    $date = '3 MONTH';
+                    break;
+                default:
+                    $date = '30 DAY';
+            }
+            $travelDetail = $this->getChinaProvinceRecordDetailData($userId, $province, $page, (string)$date, $symbol = 'inAYear');
+            $totalTravelRecord = $this->countTotalTravelRecord($userId, $province, $date, $symbol = 'inAYear');
+        } else {
+            $travelDetail = $this->getChinaProvinceRecordDetailData($userId, $province, $page, $date);
+            $totalTravelRecord = $this->countTotalTravelRecord($userId, $province, $date);
+        }
+
+        return view('City.city_detail', [
+            'detail' => [
+                'travel_detail' => $travelDetail,
+                'paginate'      => [
+                    'total_page' => $totalTravelRecord,
+                    'now_page'   => $page,
+                ],
+            ]
+        ]);
     }
 }

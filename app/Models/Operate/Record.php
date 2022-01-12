@@ -80,7 +80,7 @@ class Record extends Model
     }
 
     /**
-     * 修改旅行详细记录
+     * 修改旅行详细记录 | 未完成!
      */
     public function updateTravelRecord($userId, $recordId, $data)
     {
@@ -90,5 +90,11 @@ class Record extends Model
             ->update($data);
 
         dd($affected);
+    }
+
+    public function deleteTravelDetailRecord($userId, $recordId)
+    {
+        $deleted = DB::delete('delete from china_province_map_record where user_id = ? and record_id = ?', [$userId, $recordId]);
+        $deletedDetail = DB::delete('delete from travel_detail_record where user_id = ? and travel_id = ?', [$userId, $recordId]);
     }
 }

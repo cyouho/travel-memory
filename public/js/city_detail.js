@@ -241,4 +241,12 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#region_detail").on("click", ".delete-detail", function () {
+        recordId = $(this).attr("delete-record-id");
+
+        $("#region_detail").load('/deleteTravelDetailAjax', {
+            'user_id': userId, 'recordId': recordId, 'date': date, 'province': province, '_token': token
+        });
+    });
 });
