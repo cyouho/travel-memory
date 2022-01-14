@@ -92,6 +92,9 @@ class Record extends Model
         dd($affected);
     }
 
+    /**
+     * 删除旅行详细记录 | table: china_province_map_record, travel_detail_record
+     */
     public function deleteTravelDetailRecord($userId, $recordId)
     {
         $deleted = DB::delete('delete from china_province_map_record where user_id = ? and record_id = ?', [$userId, $recordId]);
