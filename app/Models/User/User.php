@@ -14,6 +14,9 @@ class User extends Model
     use HasFactory;
 
     // get | select ----------------------------------------------------------------------------
+    /**
+     * 获取 user ID
+     */
     public function getUserId($data)
     {
         $key = key($data);
@@ -22,6 +25,9 @@ class User extends Model
         return isset($userId[0]) ? $userId : '';
     }
 
+    /**
+     * 获取 user session
+     */
     public function getSeesion($email)
     {
         $data = DB::select('select user_session from users where user_email = ?', [$email]);
@@ -76,7 +82,7 @@ class User extends Model
     public function updateUserName($newUserName, $userId)
     {
         $affected = DB::update('update users set user_name = ? where user_id = ?', [$newUserName, $userId]);
-        
+
         return $affected;
     }
 
