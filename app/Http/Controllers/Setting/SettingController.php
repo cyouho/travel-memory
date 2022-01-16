@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
-    //
     /**
      * 显示设置页面
      */
