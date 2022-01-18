@@ -19,11 +19,17 @@ class ProvinceController extends Controller
      */
     private $_showPerPage = 5;
 
+    /**
+     * 获取地图参数
+     */
     public function __construct()
     {
         $this->_map = config('map');
     }
 
+    /**
+     * 显示 province (省/自治区/直辖市)
+     */
     public function index($province = 'others')
     {
         if ($province == 'others') return view('Province.province_layer');
