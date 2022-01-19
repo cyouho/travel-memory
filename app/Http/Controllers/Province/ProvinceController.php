@@ -28,7 +28,7 @@ class ProvinceController extends Controller
     }
 
     /**
-     * 显示 province (省/自治区/直辖市)
+     * 显示 province (省/自治区/直辖市) 首页
      */
     public function index($province = 'others')
     {
@@ -44,6 +44,9 @@ class ProvinceController extends Controller
         ]);
     }
 
+    /**
+     * 获取 省/自治区/直辖市 地图信息 ajax 方法
+     */
     public function chinaProvinceMapDataAjax(Request $request)
     {
         $formData = $request->post();
@@ -68,6 +71,9 @@ class ProvinceController extends Controller
         return response()->json($chinaProvinceMapData)->setEncodingOptions(JSON_UNESCAPED_UNICODE);
     }
 
+    /**
+     * 显示按照 日期 获取的 省/自治区/直辖市 信息
+     */
     public function getChinaProvinceDetailAjax(Request $request)
     {
         $formData = $request->post();
@@ -106,6 +112,9 @@ class ProvinceController extends Controller
         ]);
     }
 
+    /**
+     * 获取可以显示旅行记录的 日期
+     */
     public function getTravelDateDetailAjax(Request $request)
     {
         $formData = $request->post();
