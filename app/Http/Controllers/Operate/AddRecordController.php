@@ -8,14 +8,22 @@ use App\Models\Operate\Record;
 
 class AddRecordController extends Controller
 {
-    //
+    /**
+     * 初始化地图数组
+     */
     private $_map = [];
 
+    /**
+     * 初始化地图数组数据
+     */
     public function __construct()
     {
         $this->_map = config('map');
     }
 
+    /**
+     * 显示添加记录页面
+     */
     public function index()
     {
         $data = [
