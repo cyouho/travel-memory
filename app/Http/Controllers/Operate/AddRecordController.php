@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Operate\Record;
 
+/**
+ * 添加旅行详细记录
+ * 
+ * @author cyouho@hotmail.co.jp
+ */
 class AddRecordController extends Controller
 {
     /**
@@ -23,6 +28,7 @@ class AddRecordController extends Controller
 
     /**
      * 显示添加记录页面
+     * 
      * @return array $data | e.g. key: province, region
      */
     public function index()
@@ -37,8 +43,9 @@ class AddRecordController extends Controller
 
     /**
      * 添加旅行记录主要方法
-     * @param Request $request
-     * @return redirect '/addRecord'
+     * 
+     * @param  Request  $request     <传入的参数>
+     * @return redirect '/addRecord' <重定向到 addRecord 页面>
      */
     public function addNewRecord(Request $request)
     {
@@ -118,10 +125,11 @@ class AddRecordController extends Controller
 
     /**
      * 添加旅行详细 | 插入内容: 景点名，备注
-     * @param string $travelId
-     * @param int $userId
-     * @param string $spotName
-     * @param string $remark
+     * 
+     * @param string $travelId <旅行Id>
+     * @param int    $userId   <用户Id>
+     * @param string $spotName <景点名>
+     * @param string $remark   <备注>
      */
     public function addTravelDetail($travelId, $userId, $spotName, $remark)
     {
