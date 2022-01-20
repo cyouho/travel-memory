@@ -23,6 +23,7 @@ class AddRecordController extends Controller
 
     /**
      * 显示添加记录页面
+     * @return array $data | e.g. key: province, region
      */
     public function index()
     {
@@ -34,6 +35,11 @@ class AddRecordController extends Controller
         return view('Operate.AddRecord.add_record_layer', $data);
     }
 
+    /**
+     * 添加旅行记录主要方法
+     * @param Request $request
+     * @return redirect '/addRecord'
+     */
     public function addNewRecord(Request $request)
     {
         $formdata = $request->post();
