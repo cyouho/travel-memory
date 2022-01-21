@@ -129,9 +129,9 @@ class AddRecordController extends Controller
      * @param string $travelId <旅行Id>
      * @param int    $userId   <用户Id>
      * @param string $spotName <景点名>
-     * @param string $remark   <备注>
+     * @param string $remark   <备注内容>
      */
-    public function addTravelDetail($travelId, $userId, $spotName, $remark)
+    public function addTravelDetail($travelId, $userId, $spotName, $remark): void
     {
         $data = [
             'travel_id' => $travelId,
