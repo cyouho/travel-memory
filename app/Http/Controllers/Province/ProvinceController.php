@@ -29,6 +29,10 @@ class ProvinceController extends Controller
 
     /**
      * 显示 province (省/自治区/直辖市) 首页
+     * 
+     * @param string $province <省份名称>
+     * 
+     * @return array $province <省份名, 省份代码>
      */
     public function index($province = 'others')
     {
