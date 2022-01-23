@@ -170,6 +170,11 @@ class ProvinceController extends Controller
 
     /**
      * 获取旅游了多少年
+     * 
+     * @param int    $userId   <用户Id>
+     * @param string $province <省份名>
+     * 
+     * @return array $result <旅行年数>
      */
     public function getTravelRecordByYear($userId, $province)
     {
