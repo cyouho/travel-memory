@@ -12,6 +12,11 @@ class Record extends Model
 
     /**
      * 检索旅行详细记录 | 景点名，备注
+     * 
+     * @param int $userId   <用户Id>
+     * @param int $travelId <china_province_map_record 表里的 record_id>
+     * 
+     * @return array $result <结果数组，内部为对象结果集>
      */
     public function selectTravelDetail($userId, $travelId)
     {
@@ -23,6 +28,10 @@ class Record extends Model
     /**
      * 按照时间检索旅行详细记录天数
      * 旅行详细页面<日历热力图>用
+     * 
+     * @param int $userId <用户Id>
+     * 
+     * @return array $result <结果数组，内部为对象结果集>
      */
     public function selectTravelRecord($userId)
     {
@@ -35,6 +44,10 @@ class Record extends Model
     /**
      * 检索详细旅行过的年份
      * 旅行详细页面<日历热力图>用
+     * 
+     * @param int $userId <用户Id>
+     * 
+     * @return array $result <结果数组，内部为对象结果集>
      */
     public function selectAllTravelYear($userId)
     {
@@ -46,6 +59,11 @@ class Record extends Model
     /**
      * 按照年份检索详细旅行结果 | e.g. 2022 2021 2020 2019
      * 旅行详细页面<日历热力图>用
+     * 
+     * @param int $userId <用户Id>
+     * @param int $year   <年份>
+     * 
+     * @return array $result <结果数组，内部为对象结果集>
      */
     public function selectTravelDetailByYear($userId, $year)
     {
@@ -71,6 +89,10 @@ class Record extends Model
 
     /**
      * 插入旅行目的地，备注
+     * 
+     * @param array $data <插入的数据数组，travel_id, user_id, spot_name, remark>
+     * 
+     * @return void
      */
     public function insertTravelDetail($data)
     {
