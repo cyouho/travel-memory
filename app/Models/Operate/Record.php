@@ -74,6 +74,10 @@ class Record extends Model
 
     /**
      * 插入旅行详细记录并获取插入的id
+     * 
+     * @param array $data <插入数据数组>
+     * 
+     * @return int $id <插入数据时的旅行详细id>
      */
     public function insertTravelRecord($data)
     {
