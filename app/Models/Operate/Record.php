@@ -120,6 +120,11 @@ class Record extends Model
 
     /**
      * 删除旅行详细记录 | table: china_province_map_record, travel_detail_record
+     * 
+     * @param int $userId   <用户Id>
+     * @param int $recordId <旅行详细记录Id, table: travel_detail_record>
+     * 
+     * @return void
      */
     public function deleteTravelDetailRecord($userId, $recordId)
     {
