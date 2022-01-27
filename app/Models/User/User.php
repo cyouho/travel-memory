@@ -16,6 +16,10 @@ class User extends Model
     // get | select ----------------------------------------------------------------------------
     /**
      * 获取 user ID
+     * 
+     * @param array $data
+     * 
+     * @return array $userId | ''
      */
     public function getUserId($data)
     {
