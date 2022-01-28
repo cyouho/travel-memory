@@ -43,6 +43,13 @@ class User extends Model
         return $session;
     }
 
+    /**
+     * 获取 user name
+     * 
+     * @param string $session <用户session>
+     * 
+     * @return string $userName[0]['user_name'] <用户session>
+     */
     public function getUserName($session)
     {
         $data = DB::select('select user_name from users where user_session = ?', [$session]);
