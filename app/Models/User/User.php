@@ -17,9 +17,9 @@ class User extends Model
     /**
      * 获取 user ID
      * 
-     * @param array $data
+     * @param array $data <检索userId所需数据数组>
      * 
-     * @return array $userId | ''
+     * @return array $userId | '' <用户Id | ''>
      */
     public function getUserId($data)
     {
@@ -31,6 +31,10 @@ class User extends Model
 
     /**
      * 获取 user session
+     * 
+     * @param string $email <用户email>
+     * 
+     * @return string $session <用户email对应的session>
      */
     public function getSeesion($email)
     {
