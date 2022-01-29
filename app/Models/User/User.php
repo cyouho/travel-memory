@@ -58,6 +58,13 @@ class User extends Model
         return $userName[0]['user_name'];
     }
 
+    /**
+     * 获取去过的省份
+     * 
+     * @param array $data <检索所需键值对>
+     * 
+     * @return object $$result[0]->gone <去过的省份>
+     */
     public function getProvinceGoneRecord($data)
     {
         $key = key($data);
