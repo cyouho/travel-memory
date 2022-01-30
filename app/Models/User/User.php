@@ -74,6 +74,14 @@ class User extends Model
     }
 
     // update | update ---------------------------------------------------------------------------
+    /**
+     * 更新最后登录时间
+     * 
+     * @param string $loginTime <登录时间>
+     * @param string $email     <用户email>
+     * 
+     * @return void
+     */
     public function updateLastLoginTime($loginTime, $email)
     {
         $affected = DB::update('update users set last_login_at = ? where user_email = ?', [$loginTime, $email]);
