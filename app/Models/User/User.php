@@ -87,6 +87,13 @@ class User extends Model
         $affected = DB::update('update users set last_login_at = ? where user_email = ?', [$loginTime, $email]);
     }
 
+    /**
+     * 更新总登录次数
+     * 
+     * @param string $email <用户email>
+     * 
+     * @return void
+     */
     public function updateTotalLoginTimes($email)
     {
         $affected = DB::update('update users set total_login_times = total_login_times + 1 where user_email = ?', [$email]);
