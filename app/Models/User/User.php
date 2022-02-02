@@ -99,6 +99,14 @@ class User extends Model
         $affected = DB::update('update users set total_login_times = total_login_times + 1 where user_email = ?', [$email]);
     }
 
+    /**
+     * 更新管理员登录信息
+     * 
+     * @param string $loginTime <管理员登录时间>
+     * @param string $email     <管理员邮件email>
+     * 
+     * @return void
+     */
     public function updateAdminLoginInfo($loginTime, $email)
     {
         $userId = $this->getUserId(['user_email' => $email]);
