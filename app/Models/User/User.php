@@ -124,6 +124,14 @@ class User extends Model
         }
     }
 
+    /**
+     * 更新用户名
+     * 
+     * @param string $newUserName <新用户名>
+     * @param int    $userId      <用户Id>
+     * 
+     * @return int $affected <更新成功与否判定值 0 | 1>
+     */
     public function updateUserName($newUserName, $userId)
     {
         $affected = DB::update('update users set user_name = ? where user_id = ?', [$newUserName, $userId]);
