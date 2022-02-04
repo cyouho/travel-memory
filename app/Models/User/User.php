@@ -139,6 +139,14 @@ class User extends Model
         return $affected;
     }
 
+    /**
+     * 更新用户密码
+     * 
+     * @param string $newPassword <用户新密码>
+     * @param int    $userId      <用户Id>
+     * 
+     * @return void
+     */
     public function updateUserPassword($newPassword, $userId)
     {
         $password = Hash::make($newPassword);
