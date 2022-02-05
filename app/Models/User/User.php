@@ -155,6 +155,10 @@ class User extends Model
 
     /**
      * 更新 user 登录记录里的登录次数
+     * 
+     * @param int $recordId <同一天登录时更新当日 recordId 的次数>
+     * 
+     * @return void
      */
     public function updateUserLoginTimes($recordId)
     {
