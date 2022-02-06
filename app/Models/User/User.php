@@ -166,6 +166,14 @@ class User extends Model
     }
 
     // 注册用方法 ------------------------------------------------------------------------------
+    /**
+     * 注册功能
+     * 
+     * @param string $email    <用户email>
+     * @param string $password <用户密码>
+     * 
+     * @return string $session <用户session>
+     */
     public function RegisterSet($email, $password)
     {
         $userName = ModelsUtils::getNameFromEmail($email);
