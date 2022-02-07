@@ -204,6 +204,9 @@ class User extends Model
         return $session;
     }
 
+    /**
+     * 
+     */
     public function checkUserPwd($password, $data)
     {
         $key = key($data);
