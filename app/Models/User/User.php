@@ -205,7 +205,7 @@ class User extends Model
     }
 
     /**
-     * 
+     * 检查用户密码
      */
     public function checkUserPwd($password, $data)
     {
