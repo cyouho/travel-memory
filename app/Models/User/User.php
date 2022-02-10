@@ -206,6 +206,11 @@ class User extends Model
 
     /**
      * 检查用户密码
+     * 
+     * @param string $password <用户密码>
+     * @param array  $data     <数据数组>
+     * 
+     * @return bool
      */
     public function checkUserPwd($password, $data)
     {
