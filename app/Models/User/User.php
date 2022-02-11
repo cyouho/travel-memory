@@ -221,6 +221,12 @@ class User extends Model
     }
 
     // insert | insert --------------------------------------------------------------------------
+    /**
+     * @param int    $userId    <用户Id>
+     * @param string $timestamp <用户登录时间戳>
+     * 
+     * @return void
+     */
     public function insertUserLoginRecord($userId, $timestamp)
     {
         $insertData = [
