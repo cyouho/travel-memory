@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Utils as ModelsUtils;
 use App\Http\Controllers\Utils as ControllersUtils;
 
+/**
+ * 用户所有的数据库操作类
+ */
 class User extends Model
 {
     use HasFactory;
