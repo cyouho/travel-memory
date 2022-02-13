@@ -225,6 +225,8 @@ class User extends Model
 
     // insert | insert --------------------------------------------------------------------------
     /**
+     * 插入用户登录记录
+     * 
      * @param int    $userId    <用户Id>
      * @param string $timestamp <用户登录时间戳>
      * 
@@ -240,6 +242,13 @@ class User extends Model
         $affected = DB::insert('insert into user_login_record (user_id, login_day, login_times) values (?, ?, ?)', [$insertData['user_id'], $insertData['login_day'], $insertData['login_times']]);
     }
 
+    /**
+     * 插入地图数据
+     * 
+     * @param int $userId <用户Id>
+     * 
+     * @return void
+     */
     public function insertChinaMapRecord($userId)
     {
         $data = ModelsUtils::initChinaMapRecord($userId);
