@@ -13,6 +13,9 @@ class ProvinceMap extends Model
     /**
      * 获取省级地图数据
      * 
+     * @param int    $userId       <用户Id>
+     * @param string $provinceName <省份名>
+     * 
      * @return array
      */
     public function getChinaProvinceMapDataAll($userId, $provinceName)
