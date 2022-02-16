@@ -50,6 +50,10 @@ class ProvinceController extends Controller
 
     /**
      * 获取 省/自治区/直辖市 地图信息 ajax 方法
+     * 
+     * @param Request $request <http传递参数>
+     * 
+     * @return json $chianProvinceMapData <省份地图参数>
      */
     public function chinaProvinceMapDataAjax(Request $request)
     {
